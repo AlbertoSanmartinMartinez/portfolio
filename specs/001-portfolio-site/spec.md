@@ -1,5 +1,5 @@
 ---
-status: draft
+status: approved
 owner: Alberto Sanmartín Martínez
 date: 2026-11-25
 links:
@@ -16,7 +16,7 @@ A public, bilingual (Spanish and English) one-page site that presents Alberto's 
 ## Behavior
 
 1. A visitor opens `/`. The site sends them to `/es` or `/en` according to their browser language (Spanish if it prefers Spanish, English otherwise).
-2. The page shows, in order: a header with his name and the language switch; the Profile (name, headline, location, short summary, photo); Experience (most recent first); Projects; and a Contact section with links (LinkedIn, GitHub, email).
+2. The page shows, in order: a header with his name and the language switch; the Profile (name, headline, location, short summary, photo); Experience (most recent first); Projects; and a Contact section with links (LinkedIn, GitHub, and email as a `mailto:` link).
 3. The header links jump to each section. On a phone the links collapse into a menu.
 4. The language switch takes the visitor to the same section in the other language and remembers the choice for later visits.
 5. Each Experience entry shows company, role, dates (start–end or "Present"), location and up to five highlights.
@@ -70,5 +70,5 @@ Accessibility: one `h1` per page (his name), sections as `h2`, `lang` attribute 
 ## Open questions
 
 - [ ] Which projects to feature, and their links: from the LinkedIn export plus any Alberto adds.
-- [ ] The profile photo to use.
-- [ ] The public email address for the Contact section, or none until `specs/002` adds the form.
+- [x] The profile photo: initials for now; a photo can be added to the content later without code changes.
+- [x] The public email address: `info@albertosanmartinmartinez.es`, as a `mailto:` link in Contact.
