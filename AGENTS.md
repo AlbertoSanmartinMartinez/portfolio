@@ -32,10 +32,12 @@ Use quiet flags so failures are not buried in noise. `verify-changes` runs the r
 
 | Changed paths | Install | Lint | Types | Test | E2E |
 | --- | --- | --- | --- | --- | --- |
-| `package.json`, `pnpm-lock.yaml`, `src/**`, `content/**`, `tests/**` | `pnpm install --frozen-lockfile` | `pnpm lint`, `pnpm format:check` | `pnpm typecheck` | `pnpm test` | `pnpm build && pnpm e2e` (needs `SITE_URL`, see `.env.example`) |
+| `package.json`, `pnpm-lock.yaml`, `src/**`, `content/**`, `tests/**` | `pnpm install --frozen-lockfile` | `pnpm lint`, `pnpm format:check` | `pnpm typecheck` | `pnpm test`; with the stack: `pnpm test:integration` | `pnpm build && pnpm e2e` (needs the variables in `.env.example`) |
+| `src/db/**`, `drizzle/**` | | | `pnpm db:check` | `pnpm db:migrate` on the stack | |
+| `openapi/**` | | | `pnpm api:generate` and no diff in `src/lib/api/schema.d.ts` | | |
 | Any path | | | | `python3 scripts/check_harness.py` | |
 
-Local stack: `scripts/stack.sh up | info | logs | seed | down`. Node from `.nvmrc` (`nvm use`); the site runs with `pnpm dev`.
+Local stack: `scripts/stack.sh up | info | logs | seed | down`; `eval "$(scripts/stack.sh info | grep ^export)"` sets the database and SMTP variables. Node from `.nvmrc` (`nvm use`); the site runs with `pnpm dev`.
 
 ## What to open
 

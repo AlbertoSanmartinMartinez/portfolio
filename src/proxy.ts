@@ -12,6 +12,6 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Everything except Next internals and files with an extension (icons, images).
-  matcher: ["/((?!_next/|.*\\.[a-zA-Z0-9]+$).*)"],
+  // Everything except Next internals, the API and files with an extension (icons, images).
+  matcher: ["/((?!_next/|api/|.*\\.[a-zA-Z0-9]+$).*)"],
 };

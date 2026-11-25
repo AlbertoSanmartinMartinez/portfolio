@@ -38,11 +38,17 @@ for r in rows:
                     for p in (r.get("Publishers") or []) if p.get("PublishedPort")})
     print("  %-10s %-8s %-10s %s" % (r["Service"], r["State"], r.get("Health") or "-",
                                     ", ".join(ports) or "no published ports"))
-# The example db service: print the DSN the db-local MCP server reads (local only).
-for r in rows:
-    for p in (r.get("Publishers") or []):
-        if r["Service"] == "db" and p.get("TargetPort") == 5432 and p.get("PublishedPort"):
-            print("\nexport DB_LOCAL_DSN=postgres://app:app@%s:%s/app?sslmode=disable" % (p["URL"], p["PublishedPort"]))
+# Variables for the app, the tests and the db-local MCP server (local only).
+ports = {(r["Service"], p.get("TargetPort")): (p["URL"], p["PublishedPort"])
+         for r in rows for p in (r.get("Publishers") or []) if p.get("PublishedPort")}
+if ("db", 5432) in ports:
+    dsn = "postgres://app:app@%s:%s/app?sslmode=disable" % ports[("db", 5432)]
+    print("\nexport DATABASE_URL=%s\nexport DB_LOCAL_DSN=%s" % (dsn, dsn))
+if ("mail", 1025) in ports:
+    host, port = ports[("mail", 1025)]
+    print("export SMTP_HOST=%s SMTP_PORT=%s MAIL_FROM=web@example.test MAIL_TO=alberto@example.test" % (host, port))
+if ("mail", 8025) in ports:
+    print("export MAILPIT_URL=http://%s:%s" % ports[("mail", 8025)])
 PY
 }
 

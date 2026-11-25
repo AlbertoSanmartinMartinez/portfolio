@@ -1,6 +1,8 @@
 # pnpm settings (docs/guides/dependencies.md).
 # New releases wait 7 days before they can be installed, except security fixes.
 minimumReleaseAge: 10080
+# Install scripts are denied unless a package needs them to work.
 allowBuilds:
+  esbuild: false
   sharp: false
   unrs-resolver: false

@@ -8,7 +8,7 @@ How a public or internal API changes without breaking its callers. Skill: `updat
 | --- | --- |
 | Contract format and file | OpenAPI 3.1, `openapi/openapi.yaml` |
 | Versioning scheme | URL prefix `/api/v1` |
-| Breaking-change detector | oasdiff (added to CI by `specs/002`) |
+| Breaking-change detector | oasdiff in `.github/workflows/ci.yml` |
 | Known consumers | The site's own contact form |
 | Deprecation window | None while the site is the only consumer; 30 days if an external one appears |
 
@@ -25,5 +25,5 @@ How a public or internal API changes without breaking its callers. Skill: `updat
 
 | Rule | Enforced by |
 | --- | --- |
-| No unannounced breaking change (3) | None yet: oasdiff against `main`, added by `specs/002` |
+| No unannounced breaking change (3) | oasdiff against the base branch in `.github/workflows/ci.yml` |
 | Clients regenerated (6) | Drift check from `generated-clients.md` |

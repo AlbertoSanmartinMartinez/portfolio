@@ -6,7 +6,7 @@ How personal and confidential data is handled in code, tests, logs and Git. Appl
 
 | Fact | Value |
 | --- | --- |
-| Personal data the product stores | Contact messages: name, email, message, received at. Purpose: replying to the sender. Table `contact_message` (`specs/002`) |
+| Personal data the product stores | Contact messages: name, email, message, locale, received at. Purpose: replying to the sender. Table `contact_message`, and Alberto's inbox. IP addresses are used in memory for the rate limit and never stored |
 | Retention | 12 months, then deleted |
 | Regulations that apply | GDPR; the contact form shows a privacy notice |
 | Who handles data requests | Alberto |

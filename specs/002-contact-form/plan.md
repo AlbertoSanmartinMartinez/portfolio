@@ -1,5 +1,5 @@
 ---
-status: draft
+status: approved
 owner: Alberto Sanmartín Martínez
 date: 2026-11-25
 links:

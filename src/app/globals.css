@@ -6,6 +6,8 @@
   --border: #dbe1e8;
   --accent: #1d4ed8;
   --accent-text: #ffffff;
+  --error: #b42318;
+  --success: #067647;
   --radius: 12px;
   --space: clamp(1rem, 2.5vw, 1.5rem);
   color-scheme: light dark;
@@ -20,6 +22,8 @@
     --border: #26324a;
     --accent: #8ab4ff;
     --accent-text: #0b1120;
+    --error: #fda29b;
+    --success: #75e0a7;
   }
 }
 

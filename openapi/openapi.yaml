@@ -1,0 +1,118 @@
+# Source of truth for the site's API (docs/guides/api-contracts.md).
+# After any change: `pnpm api:generate` and commit src/lib/api/schema.d.ts.
+openapi: 3.1.0
+info:
+  title: Portfolio API
+  version: 1.0.0
+paths:
+  /api/v1/contact:
+    post:
+      operationId: sendContactMessage
+      summary: Send a contact message to Alberto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactRequest"
+      responses:
+        "201":
+          description: Stored and forwarded (also returned for discarded spam)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactCreated"
+        "400":
+          description: Invalid fields
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationError"
+        "403":
+          description: Request from another origin
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "413":
+          description: Body larger than 10 KB
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "429":
+          description: Too many messages from the same address
+          headers:
+            Retry-After:
+              description: Seconds until a new message is accepted
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: Unexpected failure
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    ContactRequest:
+      type: object
+      additionalProperties: false
+      required: [name, email, message, locale]
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        message:
+          type: string
+          minLength: 10
+          maxLength: 5000
+        locale:
+          type: string
+          enum: [es, en]
+        website:
+          type: string
+          description: Honeypot; people leave it empty
+    ContactCreated:
+      type: object
+      required: [id]
+      properties:
+        id:
+          type: string
+          format: uuid
+    FieldErrorCode:
+      type: string
+      enum: [required, invalid_email, too_short, too_long]
+    ValidationError:
+      type: object
+      required: [error, fields]
+      properties:
+        error:
+          type: string
+          const: validation
+        fields:
+          type: object
+          additionalProperties: false
+          properties:
+            name:
+              $ref: "#/components/schemas/FieldErrorCode"
+            email:
+              $ref: "#/components/schemas/FieldErrorCode"
+            message:
+              $ref: "#/components/schemas/FieldErrorCode"
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+          enum: [forbidden_origin, too_large, rate_limited, internal]

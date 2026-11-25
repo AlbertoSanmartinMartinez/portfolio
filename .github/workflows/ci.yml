@@ -1,5 +1,5 @@
 # App checks (docs/guides/ci-cd.md). Draft PRs run the fast checks; ready PRs and
-# main add the build, e2e, Lighthouse and diff coverage. `ci-ok` is the required
+# main add migrations, integration tests, diff coverage, the build, e2e and Lighthouse. `ci-ok` is the required
 # check and fails on drafts on purpose, so a draft can't be merged.
 name: ci
 
@@ -35,25 +35,66 @@ jobs:
       - run: pnpm lint
       - run: pnpm format:check
       - run: pnpm typecheck
-      - run: pnpm test:coverage
-      - name: Diff coverage (80% of changed lines)
+      - name: Generated client matches the contract
+        run: pnpm api:generate && git diff --exit-code src/lib/api/schema.d.ts
+      - name: Migration history is consistent
+        run: pnpm db:check
+      - name: No breaking API changes against the base branch
         if: github.event_name == 'pull_request'
         env:
           BASE_REF: ${{ github.base_ref }}
-        run: pipx run diff-cover==11.0.1 coverage/cobertura-coverage.xml --compare-branch "origin/$BASE_REF" --fail-under 80
+        run: |
+          if git cat-file -e "origin/$BASE_REF:openapi/openapi.yaml" 2>/dev/null; then
+            mkdir -p /tmp/base && git show "origin/$BASE_REF:openapi/openapi.yaml" > /tmp/base/openapi.yaml
+            docker run --rm -v /tmp/base:/base -v "$PWD/openapi:/head" tufin/oasdiff:v1.37.0@sha256:ff02af37a254b5199b9d72e7bba93dae5837a9119d59459168d1398893b47aea breaking /base/openapi.yaml /head/openapi.yaml --fail-on ERR
+          else
+            echo "The base branch has no contract yet."
+          fi
+      - run: pnpm test
 
   full:
     if: github.event_name == 'push' || github.event.pull_request.draft == false
     needs: checks
     runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres:17-alpine@sha256:f9cf3e1f0066f0eb0c48707d864f0ac5941e9ff454a072077d97a4d278d07d73
+        env:
+          POSTGRES_USER: app
+          POSTGRES_PASSWORD: app
+          POSTGRES_DB: app
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U app -d app" --health-interval 5s --health-timeout 3s --health-retries 10
+      mail:
+        image: axllent/mailpit:v1.33.1@sha256:aef2aacc11f075ec0fb6874275ee4a421e688e11a96ebb296134d1735c7761ce
+        ports: ["1025:1025", "8025:8025"]
+        options: --health-cmd "/mailpit readyz" --health-interval 5s --health-timeout 3s --health-retries 10
+    env:
+      DATABASE_URL: postgres://app:app@localhost:5432/app?sslmode=disable
+      SMTP_HOST: localhost
+      SMTP_PORT: "1025"
+      MAIL_FROM: web@example.test
+      MAIL_TO: alberto@example.test
+      MAILPIT_URL: http://localhost:8025
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
       - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - name: Migrations apply on an empty database
+        run: pnpm db:migrate
+      - name: Unit and integration tests with coverage
+        run: pnpm test:all:coverage
+      - name: Diff coverage (80% of changed lines)
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: pipx run diff-cover==11.0.1 coverage/cobertura-coverage.xml --compare-branch "origin/$BASE_REF" --fail-under 80
       - run: pnpm build
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm e2e

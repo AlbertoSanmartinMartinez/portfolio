@@ -19,3 +19,7 @@ README.md
 evals/
 compose.yaml
 orca.yaml
+
+# Generated from openapi/openapi.yaml; the CI drift check compares it byte for byte.
+src/lib/api/schema.d.ts
+drizzle/meta/

@@ -28,7 +28,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
         <Profile profile={profile} title={dict.sections.about} photoAlt={dict.photoAlt.replace("{name}", profile.name)} />
         <ExperienceList entries={experience} lang={lang} title={dict.sections.experience} present={dict.present} />
         {projects.length > 0 && <ProjectList projects={projects} title={dict.sections.projects} />}
-        <Contact links={profile.links} title={dict.sections.contact} intro={dict.contactIntro} />
+        <Contact links={profile.links} lang={lang} title={dict.sections.contact} intro={dict.contactIntro} form={dict.contactForm} />
       </main>
     </>
   );

@@ -9,7 +9,7 @@ How settings reach the code, and where secrets live. Skill: `add-config-variable
 | Where config is defined and validated | `src/env.ts`, a schema validated at build and startup |
 | Secret store for CI/CD | GitHub Actions secrets |
 | Secret store per environment | DigitalOcean App Platform encrypted environment variables |
-| Who sets secrets | Alberto |
+| Who sets secrets | Alberto. Current secrets: `SMTP_USER`, `SMTP_PASSWORD`; `DATABASE_URL` carries a password too |
 
 ## Rules
 

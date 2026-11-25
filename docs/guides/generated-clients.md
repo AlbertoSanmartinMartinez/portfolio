@@ -7,7 +7,7 @@ Code generated from a contract: API clients and types from an OpenAPI spec, SDKs
 | Fact | Value |
 | --- | --- |
 | Source of truth | `openapi/openapi.yaml` |
-| Generator and command | openapi-typescript: `pnpm api:generate` (added by `specs/002`) |
+| Generator and command | openapi-typescript: `pnpm api:generate`; calls go through openapi-fetch in `src/lib/api/client.ts` |
 | Output paths | `src/lib/api/schema.d.ts` |
 | Published as a package | No |
 | Consumers and deploy order | The site's own contact form; deployed together |
@@ -25,6 +25,6 @@ Code generated from a contract: API clients and types from an OpenAPI spec, SDKs
 
 | Rule | Enforced by |
 | --- | --- |
-| Generated code matches its source (1–3) | None yet: CI regenerates and runs `git diff --exit-code src/lib/api/schema.d.ts`, added by `specs/002` |
+| Generated code matches its source (1–3) | CI regenerates and runs `git diff --exit-code src/lib/api/schema.d.ts` in `.github/workflows/ci.yml` |
 | No hand edits (2) | `deny` of `Edit(**/src/lib/api/schema.d.ts)` in `.claude/settings.json` |
 | Contract changes reviewed (3) | `update-api-contract`, `review-code` |
