@@ -7,7 +7,7 @@ How changes are checked, built and deployed. Pipelines are code and follow the s
 | Fact | Value |
 | --- | --- |
 | CI provider and files | GitHub Actions, `.github/workflows/` |
-| Required check | `quality-ok` today; the app's aggregator joins it in `specs/001` |
+| Required check | `ci-ok` and `quality-ok` |
 | Registry and image tags | None: App Platform builds from the repository |
 | Deploy mechanism | DigitalOcean App Platform with managed PostgreSQL; the trigger is decided in `specs/003` |
 | Environments and approvals | `docs/environments.md` |

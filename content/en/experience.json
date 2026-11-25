@@ -1,0 +1,17 @@
+[
+  {
+    "id": "placeholder-current",
+    "company": "Placeholder company",
+    "role": "Placeholder role",
+    "start": "2024-01",
+    "highlights": ["Placeholder highlight"]
+  },
+  {
+    "id": "placeholder-previous",
+    "company": "Placeholder company",
+    "role": "Placeholder role",
+    "start": "2020-03",
+    "end": "2023-12",
+    "highlights": []
+  }
+]

@@ -1,0 +1,15 @@
+[
+  {
+    "id": "placeholder-project",
+    "name": "Portfolio",
+    "description": "Descripción provisional del proyecto",
+    "stack": ["Next.js", "TypeScript"],
+    "links": { "repo": "https://github.com/AlbertoSanmartinMartinez/portfolio" }
+  },
+  {
+    "id": "placeholder-no-links",
+    "name": "Placeholder",
+    "description": "Descripción provisional del proyecto",
+    "stack": ["Next.js"]
+  }
+]

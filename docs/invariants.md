@@ -27,4 +27,14 @@ Rules that must always hold. Each one names the checks that enforce it under "En
 - Why: an agent must not relax its own rules.
 - Enforced by: `.github/CODEOWNERS`, `.claude/settings.json`
 
-Project invariants are added, each with its check, by the spec that creates what they protect: the UI/database boundary by `specs/001`, contact message privacy and migrations by `specs/002`.
+## INV-006: UI code never reaches the database layer
+
+- Why: pages and components are rendered for every visitor; data access stays in server code that validates and authorizes.
+- Enforced by: `eslint.config.mjs`
+
+## INV-007: Content is valid and translated before it ships
+
+- Why: a missing field or language would show a broken page; the build must fail instead.
+- Enforced by: `src/content/load.ts`, `tests/unit/content.test.ts`
+
+Contact message privacy and migrations get their invariants with `specs/002`.

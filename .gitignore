@@ -11,3 +11,14 @@
 
 # Browser MCP output (screenshots go to the PR, not the repo)
 .playwright-mcp/
+
+# Node and Next.js
+node_modules/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
+playwright-report/
+test-results/
+.lighthouseci/

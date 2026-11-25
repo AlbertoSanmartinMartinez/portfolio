@@ -1,0 +1,6 @@
+# pnpm settings (docs/guides/dependencies.md).
+# New releases wait 3 days before they can be installed, except security fixes.
+minimumReleaseAge: 4320
+allowBuilds:
+  sharp: false
+  unrs-resolver: false

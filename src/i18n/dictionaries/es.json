@@ -1,0 +1,9 @@
+{
+  "sections": { "about": "Sobre mí", "experience": "Experiencia", "projects": "Proyectos", "contact": "Contacto" },
+  "languageSwitch": { "label": "English", "ariaLabel": "Cambiar a inglés" },
+  "menu": { "open": "Abrir menú", "close": "Cerrar menú" },
+  "present": "Actualidad",
+  "contactIntro": "¿Hablamos? Escríbeme o encuéntrame en:",
+  "notFound": { "title": "Esta página no existe.", "back": "Volver al inicio" },
+  "photoAlt": "Foto de {name}"
+}

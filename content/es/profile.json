@@ -1,0 +1,11 @@
+{
+  "name": "Alberto Sanmartín Martínez",
+  "headline": "Titular provisional, se sustituye con la exportación de LinkedIn",
+  "location": "Ubicación provisional",
+  "summary": ["Resumen provisional. El texto real sale de la exportación de LinkedIn."],
+  "links": {
+    "linkedin": "https://www.linkedin.com/in/albertosanmartinmartinez/",
+    "github": "https://github.com/AlbertoSanmartinMartinez",
+    "email": "info@albertosanmartinmartinez.es"
+  }
+}

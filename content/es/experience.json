@@ -1,0 +1,17 @@
+[
+  {
+    "id": "placeholder-current",
+    "company": "Empresa provisional",
+    "role": "Puesto provisional",
+    "start": "2024-01",
+    "highlights": ["Logro provisional"]
+  },
+  {
+    "id": "placeholder-previous",
+    "company": "Empresa provisional",
+    "role": "Puesto provisional",
+    "start": "2020-03",
+    "end": "2023-12",
+    "highlights": []
+  }
+]

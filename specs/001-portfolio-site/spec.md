@@ -45,7 +45,7 @@ One page per language with anchored sections; the existing design system is the 
 | Element | Spanish | English |
 | --- | --- | --- |
 | Section titles | Sobre mí · Experiencia · Proyectos · Contacto | About · Experience · Projects · Contact |
-| Language switch | "English" (`aria-label` "Cambiar a inglés") | "Español" (`aria-label` "Switch to Spanish") |
+| Language switch | "English" (accessible name "English — Cambiar a inglés") | "Español" (accessible name "Español — Switch to Spanish") |
 | Menu button | `aria-label` "Abrir menú" / "Cerrar menú" | `aria-label` "Open menu" / "Close menu" |
 | Current role end date | Actualidad | Present |
 | Contact intro | ¿Hablamos? Escríbeme o encuéntrame en: | Let's talk. Write to me or find me on: |
@@ -58,7 +58,7 @@ States:
 - Photo: if missing, the Profile shows his initials in a circle instead; never a broken image.
 - Loading and error states do not apply: pages are static. The 404 page covers unknown paths.
 
-Accessibility: one `h1` per page (his name), sections as `h2`, `lang` attribute set per page, alt text on the photo, contrast at least 4.5:1 in both themes, no information by color alone, motion reduced when the system asks for it.
+Accessibility: accessible names start with the visible text (WCAG 2.5.3); one `h1` per page (his name), sections as `h2`, `lang` attribute set per page, alt text on the photo, contrast at least 4.5:1 in both themes, no information by color alone, motion reduced when the system asks for it.
 
 ## Non-functional
 

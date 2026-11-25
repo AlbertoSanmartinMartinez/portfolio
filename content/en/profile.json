@@ -1,0 +1,11 @@
+{
+  "name": "Alberto Sanmartín Martínez",
+  "headline": "Placeholder headline, replaced from the LinkedIn export",
+  "location": "Placeholder location",
+  "summary": ["Placeholder summary. The real text comes from the LinkedIn export."],
+  "links": {
+    "linkedin": "https://www.linkedin.com/in/albertosanmartinmartinez/",
+    "github": "https://github.com/AlbertoSanmartinMartinez",
+    "email": "info@albertosanmartinmartinez.es"
+  }
+}

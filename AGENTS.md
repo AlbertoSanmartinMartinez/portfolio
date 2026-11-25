@@ -32,10 +32,10 @@ Use quiet flags so failures are not buried in noise. `verify-changes` runs the r
 
 | Changed paths | Install | Lint | Types | Test | E2E |
 | --- | --- | --- | --- | --- | --- |
-| `package.json`, `src/**`, `tests/**` | None yet: `specs/001` adds them | | | | |
+| `package.json`, `pnpm-lock.yaml`, `src/**`, `content/**`, `tests/**` | `pnpm install --frozen-lockfile` | `pnpm lint`, `pnpm format:check` | `pnpm typecheck` | `pnpm test` | `pnpm build && pnpm e2e` (needs `SITE_URL`, see `.env.example`) |
 | Any path | | | | `python3 scripts/check_harness.py` | |
 
-Local stack: `scripts/stack.sh up | info | logs | seed | down`.
+Local stack: `scripts/stack.sh up | info | logs | seed | down`. Node from `.nvmrc` (`nvm use`); the site runs with `pnpm dev`.
 
 ## What to open
 
@@ -124,3 +124,13 @@ Claude Code, Cursor and Copilot in VS Code load `.claude/agents/<role>.md` as su
 - The site is public: everything committed is public too. No secrets, no personal data other than what Alberto publishes on purpose, no contact messages.
 - Contact messages are personal data: stored only in PostgreSQL, never logged in full, never copied out of production (`docs/guides/privacy.md`).
 - Each rule that must always hold gets an entry in `docs/invariants.md` with the check that enforces it.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+## This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

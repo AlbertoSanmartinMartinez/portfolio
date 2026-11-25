@@ -1,0 +1,9 @@
+{
+  "sections": { "about": "About", "experience": "Experience", "projects": "Projects", "contact": "Contact" },
+  "languageSwitch": { "label": "Español", "ariaLabel": "Switch to Spanish" },
+  "menu": { "open": "Open menu", "close": "Close menu" },
+  "present": "Present",
+  "contactIntro": "Let's talk. Write to me or find me on:",
+  "notFound": { "title": "This page doesn't exist.", "back": "Back to home" },
+  "photoAlt": "Photo of {name}"
+}

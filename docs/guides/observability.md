@@ -6,7 +6,7 @@ What every change must leave behind so production problems can be seen and expla
 
 | Fact | Value |
 | --- | --- |
-| Logging library and format | Structured JSON to stdout (logger chosen in `specs/001`), collected by App Platform |
+| Logging library and format | Structured JSON to stdout, collected by App Platform; no runtime logging yet (the site is static) |
 | Metrics and traces | None yet: App Platform insights for now |
 | Error tracking | None yet |
 | Dashboards and alerts | DigitalOcean App Platform insights and alerts, owned by Alberto |
