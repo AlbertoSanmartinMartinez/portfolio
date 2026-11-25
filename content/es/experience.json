@@ -1,0 +1,179 @@
+[
+  {
+    "id": "intemic-cto",
+    "company": "Intemic",
+    "role": "Chief Technology Officer",
+    "location": "Barcelona, España",
+    "start": "2025-10",
+    "highlights": []
+  },
+  {
+    "id": "magic-feedback-tech-lead",
+    "company": "Magic Feedback",
+    "role": "Software Engineer Tech Lead",
+    "location": "Copenhague, Dinamarca",
+    "start": "2024-10",
+    "end": "2025-07",
+    "highlights": [
+      "Definición y desarrollo de una plataforma cloud de microservicios para recoger, analizar y reportar el feedback de clientes internacionales."
+    ]
+  },
+  {
+    "id": "qmenta-tech-lead",
+    "company": "QMENTA",
+    "role": "Software Engineer Tech Lead",
+    "start": "2024-07",
+    "end": "2024-09",
+    "highlights": []
+  },
+  {
+    "id": "k-lagan-technical-lead",
+    "company": "K-LAGAN",
+    "role": "Technical Lead Consultant",
+    "location": "Barcelona, España",
+    "start": "2023-06",
+    "end": "2024-07",
+    "highlights": []
+  },
+  {
+    "id": "unilabs-technical-lead",
+    "company": "Unilabs",
+    "role": "Technical Lead",
+    "location": "Barcelona, España",
+    "start": "2023-06",
+    "end": "2024-07",
+    "highlights": []
+  },
+  {
+    "id": "k-lagan-backend-lead",
+    "company": "K-LAGAN",
+    "role": "Back-End Engineer Lead Consultant",
+    "location": "Barcelona, España",
+    "start": "2023-02",
+    "end": "2023-06",
+    "highlights": []
+  },
+  {
+    "id": "unilabs-backend-lead",
+    "company": "Unilabs",
+    "role": "Back-End Engineer Lead",
+    "location": "Barcelona, España",
+    "start": "2023-02",
+    "end": "2023-06",
+    "highlights": []
+  },
+  {
+    "id": "mapfre-team-lead",
+    "company": "MAPFRE",
+    "role": "Team Lead",
+    "start": "2022-04",
+    "end": "2023-02",
+    "highlights": [
+      "Diseño y desarrollo de microservicios para la plataforma SDM de Mapfre, enfocados a la comercialización de productos de salud de SAVIA."
+    ]
+  },
+  {
+    "id": "plexus-team-lead",
+    "company": "Plexus Tech",
+    "role": "Team Lead Consultant",
+    "start": "2022-03",
+    "end": "2023-02",
+    "highlights": [
+      "Soluciones front con Angular y back con Django para la plataforma de microservicios SDM (Salud Digital Mapfre), enfocadas a la comercialización de productos de salud de SAVIA.",
+      "Desarrollo de software para la Suite de la Administración Pública Gallega: tramitador de expedientes con Django ViewFlow, portafirmas y gestión documental."
+    ]
+  },
+  {
+    "id": "they-make-it-happen",
+    "company": "THEY make it happen",
+    "role": "Digital Solutions Lead",
+    "location": "Barbastro, España",
+    "start": "2020-07",
+    "end": "2022-03",
+    "highlights": [
+      "Diseño de un plan estratégico de digitalización para un distribuidor de Hijos de Rivera S.A.",
+      "Implantación cloud de Odoo y desarrollo de funcionalidades y módulos personalizados.",
+      "Plataforma para gestionar suelos industriales con GeoDjango, conectada con la Oficina Virtual del Catastro y el Instituto Aragonés de Fomento.",
+      "Software de rutas de vehículos (VRP) que maximiza beneficios y minimiza distancias con K-Means y programación lineal con Google OR-Tools."
+    ]
+  },
+  {
+    "id": "founder",
+    "company": "Alberto Sanmartín Martínez",
+    "role": "CEO y fundador",
+    "start": "2015-09",
+    "end": "2020-11",
+    "highlights": [
+      "Diseño e implementación de una plataforma SaaS con Django, Redis y Celery para la gestión online de tratamientos dentales, gestión multimedia de archivos .dcm y visualización web de .stl.",
+      "Plataforma CMS cloud con Django y aplicación móvil híbrida con Angular e Ionic para un competidor nacional de Tripadvisor.",
+      "Desarrollo de aplicaciones web, eCommerce, CMS y software de facturación y contabilidad."
+    ]
+  },
+  {
+    "id": "ecityclic-engineer",
+    "company": "eCityclic",
+    "role": "Ingeniero de software",
+    "location": "Lleida, España",
+    "start": "2020-02",
+    "end": "2020-06",
+    "highlights": [
+      "Software en Python para entidades de la Administració Oberta de Catalunya: tramitador de expedientes, plenos telemáticos, portafirmas y gestión documental."
+    ]
+  },
+  {
+    "id": "semic-developer",
+    "company": "SEMIC",
+    "role": "Desarrollador de software",
+    "location": "Lleida, España",
+    "start": "2019-04",
+    "end": "2020-02",
+    "highlights": [
+      "Diseño y desarrollo de portales web para administraciones públicas con Plone, ZEO Server y ZODB.",
+      "Recogida y visualización de datos en Grafana con Prometheus y Loki."
+    ]
+  },
+  {
+    "id": "centre-gestor-lleida-developer",
+    "company": "Centre Gestor Lleida S.A.",
+    "role": "Desarrollador de software",
+    "location": "Lleida, España",
+    "start": "2018-06",
+    "end": "2019-04",
+    "highlights": ["Diseño y desarrollo de una intranet con PHP y CodeIgniter.", "Programación y conexión con la AEAT de modelos fiscales."]
+  },
+  {
+    "id": "camara-comercio-it",
+    "company": "Cámara Oficial de Comercio de España en Bélgica y Luxemburgo",
+    "role": "IT Service Provider",
+    "start": "2017-09",
+    "end": "2017-12",
+    "highlights": [
+      "Diseño y desarrollo de un CRM para gestión de eventos con PHP y Laravel.",
+      "Aplicaciones web para clientes con PHP, WordPress y PrestaShop."
+    ]
+  },
+  {
+    "id": "planes-asesoria-programmer",
+    "company": "Planes Asesoría y Soluciones Informáticas SL",
+    "role": "Programador informático",
+    "start": "2017-06",
+    "end": "2017-09",
+    "highlights": [
+      "Desarrollo en Python de módulos y funcionalidades de Odoo.",
+      "Desarrollo en Java y adaptación de ERP para el SII (Suministro Inmediato de Información).",
+      "Aplicación móvil Android para gestión de inventario y almacén."
+    ]
+  },
+  {
+    "id": "metodo-sancal-collaborator",
+    "company": "Método Sáncal",
+    "role": "Colaborador",
+    "start": "2016-05",
+    "end": "2016-09",
+    "highlights": [
+      "Colaborador del programa Yuzz de emprendimiento.",
+      "Diseño y desarrollo de la página web pública.",
+      "Implementación del protocolo MIDI para una plataforma cloud de neurotecnología."
+    ]
+  }
+]

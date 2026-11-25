@@ -57,5 +57,7 @@ jobs:
     needs: [harness, workflows, secrets, static-analysis, dependencies]
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo '${{ toJSON(needs) }}' | python3 -c 'import json,sys; bad=[k for k,v in json.load(sys.stdin).items() if v["result"]!="success"]; print("failed:", bad) if bad else print("all green"); sys.exit(1 if bad else 0)'
+      - env:
+          NEEDS: ${{ toJSON(needs) }}
+        run: |
+          echo "$NEEDS" | python3 -c 'import json,sys; bad=[k for k,v in json.load(sys.stdin).items() if v["result"]!="success"]; print("failed:", bad) if bad else print("all green"); sys.exit(1 if bad else 0)'

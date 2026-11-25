@@ -1,0 +1,11 @@
+[
+  {
+    "id": "portfolio",
+    "name": "Portfolio",
+    "description": "This site: a bilingual portfolio built by coding agents following the Agentic SDLC harness template.",
+    "stack": ["Next.js", "TypeScript"],
+    "links": {
+      "repo": "https://github.com/AlbertoSanmartinMartinez/portfolio"
+    }
+  }
+]

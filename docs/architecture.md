@@ -10,19 +10,20 @@ A Next.js app (App Router) renders the portfolio pages from content files and se
 
 | Component | Path | Responsibility | Talks to |
 | --- | --- | --- | --- |
-| Pages and UI (*planned*, `specs/001`) | `src/app/`, `src/components/` | Profile, experience, projects | Content files |
-| Content (*planned*, `specs/001`) | `content/` | Profile data taken from Alberto's LinkedIn export | — |
+| Pages and UI | `src/app/[lang]/`, `src/components/` | Profile, experience, projects, contact links, localized 404 | Content, dictionaries |
+| Content | `content/<lang>/*.json`, validated by `src/content/` | Profile, experience and projects per language | — |
+| Languages | `src/i18n/`, `src/proxy.ts` | Locale choice (cookie, then browser), UI copy per language | — |
 | Contact API (*planned*, `specs/002`) | `src/app/api/v1/contact/` | Validates and stores contact messages | Database |
 | Database access (*planned*, `specs/002`) | `src/db/` | Drizzle schema and queries | PostgreSQL |
 | Generated API client (*planned*, `specs/002`) | `src/lib/api/schema.d.ts` | Types for calling the contact API | — |
 
 ## Boundaries
 
-UI components never import `src/db/`; only server code (route handlers) does. Enforced by ESLint `no-restricted-imports`, added by `specs/001`.
+UI components never import `src/db/`; only server code (route handlers) does. Enforced by ESLint `no-restricted-imports` in `eslint.config.mjs` (INV-006).
 
 ## Main flows
 
-1. A visitor opens the site: the page is rendered from `content/` and cached.
+1. A visitor opens `/`: `src/proxy.ts` redirects to `/es` or `/en`; the page is prerendered at build time from `content/<lang>/`.
 2. A visitor sends the contact form: the form calls `POST /api/v1/contact` through the generated client; the API validates, stores the message and answers with its id.
 
 ## Where things live

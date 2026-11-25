@@ -1,0 +1,21 @@
+pnpm-lock.yaml
+.next/
+coverage/
+playwright-report/
+test-results/
+docs/
+specs/
+.agents/
+.claude/
+# Harness files keep the template's formatting so update-harness merges cleanly.
+AGENTS.md
+CLAUDE.md
+README.md
+.github/
+.codex/
+.cursor/
+.gemini/
+.mcp.json
+evals/
+compose.yaml
+orca.yaml

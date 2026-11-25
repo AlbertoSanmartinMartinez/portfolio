@@ -1,0 +1,180 @@
+[
+  {
+    "id": "intemic-cto",
+    "company": "Intemic",
+    "role": "Chief Technology Officer",
+    "location": "Barcelona, Spain",
+    "start": "2025-10",
+    "highlights": []
+  },
+  {
+    "id": "magic-feedback-tech-lead",
+    "company": "Magic Feedback",
+    "role": "Software Engineer Tech Lead",
+    "location": "Copenhagen, Denmark",
+    "start": "2024-10",
+    "end": "2025-07",
+    "highlights": [
+      "Defined and developed a cloud microservices platform to collect, analyze and report feedback insights from international customers."
+    ]
+  },
+  {
+    "id": "qmenta-tech-lead",
+    "company": "QMENTA",
+    "role": "Software Engineer Tech Lead",
+    "start": "2024-07",
+    "end": "2024-09",
+    "highlights": []
+  },
+  {
+    "id": "k-lagan-technical-lead",
+    "company": "K-LAGAN",
+    "role": "Technical Lead Consultant",
+    "location": "Barcelona, Spain",
+    "start": "2023-06",
+    "end": "2024-07",
+    "highlights": []
+  },
+  {
+    "id": "unilabs-technical-lead",
+    "company": "Unilabs",
+    "role": "Technical Lead",
+    "location": "Barcelona, Spain",
+    "start": "2023-06",
+    "end": "2024-07",
+    "highlights": []
+  },
+  {
+    "id": "k-lagan-backend-lead",
+    "company": "K-LAGAN",
+    "role": "Back-End Engineer Lead Consultant",
+    "location": "Barcelona, Spain",
+    "start": "2023-02",
+    "end": "2023-06",
+    "highlights": []
+  },
+  {
+    "id": "unilabs-backend-lead",
+    "company": "Unilabs",
+    "role": "Back-End Engineer Lead",
+    "location": "Barcelona, Spain",
+    "start": "2023-02",
+    "end": "2023-06",
+    "highlights": []
+  },
+  {
+    "id": "mapfre-team-lead",
+    "company": "MAPFRE",
+    "role": "Team Lead",
+    "start": "2022-04",
+    "end": "2023-02",
+    "highlights": ["Designed and developed microservices for Mapfre's SDM platform, focused on selling SAVIA health products."]
+  },
+  {
+    "id": "plexus-team-lead",
+    "company": "Plexus Tech",
+    "role": "Team Lead Consultant",
+    "start": "2022-03",
+    "end": "2023-02",
+    "highlights": [
+      "Front-end solutions with Angular and back-end with Django for the SDM (Salud Digital Mapfre) microservices platform, focused on selling SAVIA health products.",
+      "Software for the Galician public administration suite: case management with Django ViewFlow, e-signature and document management."
+    ]
+  },
+  {
+    "id": "they-make-it-happen",
+    "company": "THEY make it happen",
+    "role": "Digital Solutions Lead",
+    "location": "Barbastro, Spain",
+    "start": "2020-07",
+    "end": "2022-03",
+    "highlights": [
+      "Designed a digitalization strategy for a distributor of Hijos de Rivera S.A.",
+      "Cloud rollout of Odoo and development of custom features and modules.",
+      "Platform to manage industrial land with GeoDjango, connected to the Spanish land registry and the Aragon development institute.",
+      "Vehicle routing (VRP) software that maximizes profit and minimizes distance using K-Means and linear programming with Google OR-Tools."
+    ]
+  },
+  {
+    "id": "founder",
+    "company": "Alberto Sanmartín Martínez",
+    "role": "CEO and founder",
+    "start": "2015-09",
+    "end": "2020-11",
+    "highlights": [
+      "Designed and built a SaaS platform with Django, Redis and Celery for online dental treatment management, .dcm media handling and web viewing of .stl files.",
+      "Cloud CMS platform with Django and a hybrid mobile app with Angular and Ionic for a Spanish Tripadvisor competitor.",
+      "Web applications, e-commerce, CMS, and invoicing and accounting software."
+    ]
+  },
+  {
+    "id": "ecityclic-engineer",
+    "company": "eCityclic",
+    "role": "Software Engineer",
+    "location": "Lleida, Spain",
+    "start": "2020-02",
+    "end": "2020-06",
+    "highlights": [
+      "Python software for organizations in Catalonia's open administration network: case management, online council meetings, e-signature and document management."
+    ]
+  },
+  {
+    "id": "semic-developer",
+    "company": "SEMIC",
+    "role": "Software Developer",
+    "location": "Lleida, Spain",
+    "start": "2019-04",
+    "end": "2020-02",
+    "highlights": [
+      "Designed and built web portals for public administrations with Plone, ZEO Server and ZODB.",
+      "Data collection and visualization in Grafana with Prometheus and Loki."
+    ]
+  },
+  {
+    "id": "centre-gestor-lleida-developer",
+    "company": "Centre Gestor Lleida S.A.",
+    "role": "Software Developer",
+    "location": "Lleida, Spain",
+    "start": "2018-06",
+    "end": "2019-04",
+    "highlights": [
+      "Designed and built an intranet with PHP and CodeIgniter.",
+      "Tax form programming and integration with the Spanish Tax Agency (AEAT)."
+    ]
+  },
+  {
+    "id": "camara-comercio-it",
+    "company": "Cámara Oficial de Comercio de España en Bélgica y Luxemburgo",
+    "role": "IT Service Provider",
+    "start": "2017-09",
+    "end": "2017-12",
+    "highlights": [
+      "Designed and built an event management CRM with PHP and Laravel.",
+      "Client web applications with PHP, WordPress and PrestaShop."
+    ]
+  },
+  {
+    "id": "planes-asesoria-programmer",
+    "company": "Planes Asesoría y Soluciones Informáticas SL",
+    "role": "Software Programmer",
+    "start": "2017-06",
+    "end": "2017-09",
+    "highlights": [
+      "Python development of Odoo modules and features.",
+      "Java development and ERP adaptation for Spain's SII immediate VAT reporting.",
+      "Android app for inventory and warehouse management."
+    ]
+  },
+  {
+    "id": "metodo-sancal-collaborator",
+    "company": "Método Sáncal",
+    "role": "Collaborator",
+    "start": "2016-05",
+    "end": "2016-09",
+    "highlights": [
+      "Collaborator in the Yuzz entrepreneurship program.",
+      "Designed and built the public website.",
+      "Implemented the MIDI protocol for a cloud neurotechnology platform."
+    ]
+  }
+]
