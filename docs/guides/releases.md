@@ -8,9 +8,9 @@ How a version gets from `main` to production. An agent prepares; a named person 
 | --- | --- |
 | Versioning | Semver tags `vX.Y.Z` on `main` |
 | Publishers | Alberto (@AlbertoSanmartinMartinez) |
-| How to publish | Alberto runs `git tag -a vX.Y.Z -m "vX.Y.Z"` and `git push origin vX.Y.Z`, then publishes the GitHub release with its notes |
+| How to publish | Alberto publishes a GitHub release `vX.Y.Z` from `main`; `.github/workflows/release.yml` builds and deploys it (`docs/runbooks/deploy.md`) |
 | Changelog | GitHub release notes |
-| Deploy after publish | DigitalOcean App Platform; the trigger is decided in `specs/003` |
+| Deploy after publish | Automatic, after Alberto approves the `production` environment |
 
 ## Rules
 
@@ -28,4 +28,4 @@ How a version gets from `main` to production. An agent prepares; a named person 
 | Rule | Enforced by |
 | --- | --- |
 | Agents don't publish (5) | `.agents/hooks/block-unsafe-commands.sh`, `deny` in `.claude/settings.json` |
-| Who may publish (5) | Tag protection for `v*` in the GitHub settings, set by Alberto |
+| Who may publish (5) | The guard job of `.github/workflows/release.yml`, the `production` environment approval, and tag protection for `v*` in the GitHub settings |

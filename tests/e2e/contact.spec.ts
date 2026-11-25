@@ -71,6 +71,7 @@ test("AC-9: the privacy notice links to the privacy page in each language", asyn
     await page.getByRole("link", { name: link }).click();
     await expect(page).toHaveURL(new RegExp(`${path}$`));
     await expect(page.getByRole("heading", { level: 1, name: title })).toBeVisible();
+    await expect(page.getByText(/DigitalOcean.*(Frankfurt|Fráncfort)/)).toBeVisible(); // 003 AC-11
   }
   expect((await page.goto("/en/privacidad"))?.status()).toBe(404);
 });

@@ -1,0 +1,126 @@
+# Release (specs/003, docs/guides/releases.md, docs/runbooks/deploy.md). A release vX.Y.Z
+# published by an allowed publisher is built once into ghcr.io/albertosanmartinmartinez/portfolio:vX.Y.Z
+# and deployed to App Platform. Rollback: run it by hand with an earlier tag; its image is reused.
+name: release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag to deploy (vX.Y.Z); an earlier one rolls back
+        required: true
+
+permissions: {}
+
+concurrency:
+  group: release-production
+  cancel-in-progress: false
+
+env:
+  IMAGE: ghcr.io/albertosanmartinmartinez/portfolio
+  SITE: https://www.albertosanmartinmartinez.es
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
+    steps:
+      - id: tag
+        name: Allowed publisher and release tag (AC-2)
+        env:
+          EVENT: ${{ github.event_name }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          INPUT_TAG: ${{ inputs.tag }}
+          ACTOR: ${{ github.actor }}
+          PUBLISHERS: ${{ vars.RELEASE_PUBLISHERS }}
+        run: |
+          tag="$RELEASE_TAG"
+          if [ "$EVENT" = "workflow_dispatch" ]; then tag="$INPUT_TAG"; fi
+          [[ "$tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "Not a release tag: $tag"; exit 1; }
+          allowed=" ${PUBLISHERS:-AlbertoSanmartinMartinez} "
+          [[ "$allowed" == *" $ACTOR "* ]] || { echo "$ACTOR is not an allowed publisher"; exit 1; }
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: The tag is on main
+        env:
+          TAG: ${{ steps.tag.outputs.tag }}
+        run: git merge-base --is-ancestor "$TAG" origin/main || { echo "$TAG is not on main"; exit 1; }
+
+  image:
+    needs: guard
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    env:
+      TAG: ${{ needs.guard.outputs.tag }}
+    steps:
+      - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - id: existing
+        name: Reuse the image if this tag was built before (AC-5)
+        run: |
+          if docker manifest inspect "$IMAGE:$TAG" >/dev/null 2>&1; then echo "found=true" >> "$GITHUB_OUTPUT"; else echo "found=false" >> "$GITHUB_OUTPUT"; fi
+      - if: steps.existing.outputs.found == 'false'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.guard.outputs.tag }}
+      - if: steps.existing.outputs.found == 'false'
+        uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - if: steps.existing.outputs.found == 'false'
+        name: Build once and push (AC-1)
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        with:
+          context: .
+          push: true
+          tags: ${{ env.IMAGE }}:${{ needs.guard.outputs.tag }}
+          build-args: APP_VERSION=${{ needs.guard.outputs.tag }}
+          labels: org.opencontainers.image.source=https://github.com/${{ github.repository }}
+
+  deploy:
+    needs: [guard, image]
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+    env:
+      TAG: ${{ needs.guard.outputs.tag }}
+      APP_ID: ${{ vars.DO_APP_ID }}
+    steps:
+      - uses: digitalocean/action-doctl@3cb3953159719656269e044e0e24ca16dd2a690f # v2.5.2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: Point the app at the image and wait (AC-3, AC-4)
+        # The live spec keeps the secrets set in the console; only image tags change.
+        # It is written to a temporary file and never printed.
+        run: |
+          spec="$RUNNER_TEMP/spec.json"
+          doctl apps spec get "$APP_ID" --format json > "$spec"
+          jq --arg tag "$TAG" '(.services[]?, .jobs[]?) |= (if .image then .image.tag = $tag else . end)' "$spec" > "$spec.new"
+          doctl apps update "$APP_ID" --spec "$spec.new" --wait --wait-timeout 20m > /dev/null
+          rm -f "$spec" "$spec.new"
+      - name: Smoke check, read-only (AC-1, AC-9)
+        run: |
+          version=""
+          for _ in $(seq 1 30); do
+            version=$(curl -s -D - -o /dev/null "$SITE/en" | tr -d '\r' | awk -F': ' 'tolower($1)=="x-app-version"{print $2}')
+            [ "$version" = "$TAG" ] && break
+            sleep 10
+          done
+          [ "$version" = "$TAG" ] || { echo "Serving '$version', expected $TAG"; exit 1; }
+          check() { code=$(curl -s -o /dev/null -w '%{http_code}' "$SITE$1"); [ "$code" = "$2" ] || { echo "$1 answered $code, expected $2"; exit 1; }; }
+          check /es 200
+          check /en 200
+          check /en/privacy 200
+          check /en/nothing 404
+          echo "Serving $TAG"

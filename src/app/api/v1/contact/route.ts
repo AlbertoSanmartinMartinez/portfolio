@@ -14,7 +14,7 @@ function getPorts(): Ports {
   if (!ports) {
     const env = readServerEnv();
     ports = {
-      store: createContactStore(getDb(env.DATABASE_URL)),
+      store: createContactStore(getDb(env.DATABASE_URL, env.DATABASE_CA_CERT)),
       mailer: createSmtpMailer({
         host: env.SMTP_HOST,
         port: env.SMTP_PORT,

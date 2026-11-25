@@ -12,7 +12,7 @@ How the database schema changes. Migrations run before the new code is live, whi
 | Naming convention | `drizzle/NNNN_<slug>.sql`, numbered by Drizzle Kit |
 | Autogenerate allowed | Yes, from the schema; the generated SQL is reviewed and committed |
 | Who writes migrations | Agents, reviewed by Alberto in the PR |
-| Who runs them in shared environments | None yet: the deploy spec (`specs/003`) decides, likely an App Platform pre-deploy job |
+| Who runs them in shared environments | The App Platform pre-deploy job `migrate` (`node migrate.mjs`, Drizzle's runtime migrator) on every deploy |
 | Lock and statement timeout budget | `lock_timeout` 5 s, `statement_timeout` 60 s |
 
 ## Rules

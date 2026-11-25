@@ -8,8 +8,8 @@ How changes are checked, built and deployed. Pipelines are code and follow the s
 | --- | --- |
 | CI provider and files | GitHub Actions, `.github/workflows/` |
 | Required check | `ci-ok` and `quality-ok` |
-| Registry and image tags | None: App Platform builds from the repository |
-| Deploy mechanism | DigitalOcean App Platform with managed PostgreSQL; the trigger is decided in `specs/003` |
+| Registry and image tags | `ghcr.io/albertosanmartinmartinez/portfolio:vX.Y.Z`, one immutable image per release tag |
+| Deploy mechanism | `.github/workflows/release.yml` → DigitalOcean App Platform (`.do/app.yaml`), on published releases |
 | Environments and approvals | `docs/environments.md` |
 
 ## Rules
