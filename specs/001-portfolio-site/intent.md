@@ -1,9 +1,9 @@
 ---
-status: draft
+status: approved
 owner: Alberto Sanmartín Martínez
 date: 2026-11-25
 links:
-  tracker: None yet
+  tracker: https://linear.app/alberto-sanmartin-martinez/issue/ALB-358
 ---
 
 # Intent: Portfolio site
