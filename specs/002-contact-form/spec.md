@@ -1,5 +1,5 @@
 ---
-status: draft
+status: approved
 owner: Alberto Sanmartín Martínez
 date: 2026-11-25
 links:
@@ -64,4 +64,4 @@ States: idle, sending, success, field errors, rate limited, failure. The honeypo
 
 ## Open questions
 
-- [ ] Privacy notice plus a privacy page (recommended), or the notice only.
+- [x] Privacy notice plus a privacy page in both languages (Alberto, 2026-11-25).

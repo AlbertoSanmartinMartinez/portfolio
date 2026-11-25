@@ -29,5 +29,5 @@ A visitor sends a message from the Contact section in under a minute, sees that 
 
 ## Open questions
 
-- [ ] The email provider and the sending domain, decided in the plan.
-- [ ] Privacy information: a short notice under the form plus a privacy page in both languages (recommended; Alberto to confirm at the spec gate).
+- [x] Email through the SMTP server of Alberto's domain (Alberto, 2026-11-25).
+- [x] Privacy information: a short notice under the form plus a privacy page in both languages.
