@@ -51,3 +51,8 @@ Rules that must always hold. Each one names the checks that enforce it under "En
 
 - Why: a stale client compiles and fails at runtime.
 - Enforced by: `.github/workflows/ci.yml`, `openapi/openapi.yaml`
+
+## INV-011: Production runs only images built from release tags on main
+
+- Why: what is deployed must be exactly what was reviewed and released, and rollbacks must not rebuild.
+- Enforced by: `.github/workflows/release.yml`, `.do/app.yaml`

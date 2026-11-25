@@ -1,0 +1,51 @@
+# DigitalOcean App Platform (specs/003, docs/runbooks/deploy.md). Created once with
+# `doctl apps create --spec .do/app.yaml`; releases then change only the image tag.
+# Secret and per-environment values (SMTP_*, MAIL_*) are added in the console, never here.
+name: portfolio
+region: fra
+alerts:
+  - rule: DEPLOYMENT_FAILED
+  - rule: DOMAIN_FAILED
+domains:
+  - domain: www.albertosanmartinmartinez.es
+    type: PRIMARY
+    minimum_tls_version: "1.2"
+envs:
+  - key: SITE_URL
+    value: https://www.albertosanmartinmartinez.es
+    scope: RUN_TIME
+  - key: DATABASE_URL
+    value: ${db.DATABASE_URL}
+    scope: RUN_TIME
+  - key: DATABASE_CA_CERT
+    value: ${db.CA_CERT}
+    scope: RUN_TIME
+services:
+  - name: web
+    image:
+      registry_type: GHCR
+      registry: albertosanmartinmartinez
+      repository: portfolio
+      tag: v0.1.0
+    http_port: 3000
+    instance_size_slug: apps-s-1vcpu-0.5gb
+    instance_count: 1
+    health_check:
+      http_path: /en
+      initial_delay_seconds: 5
+jobs:
+  - name: migrate
+    kind: PRE_DEPLOY
+    image:
+      registry_type: GHCR
+      registry: albertosanmartinmartinez
+      repository: portfolio
+      tag: v0.1.0
+    run_command: node migrate.mjs
+    instance_size_slug: apps-s-1vcpu-0.5gb
+    instance_count: 1
+databases:
+  - name: db
+    engine: PG
+    version: "17"
+    production: false

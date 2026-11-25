@@ -98,6 +98,15 @@ jobs:
       - run: pnpm build
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm e2e
+      - name: Container image builds, migrates and serves (specs/003)
+        run: |
+          docker build -q --build-arg APP_VERSION=ci -t portfolio:ci .
+          docker run --rm --network host -e DATABASE_URL portfolio:ci node migrate.mjs
+          docker run -d --name web --network host -e PORT=3300 -e SITE_URL=http://localhost:3300 \
+            -e DATABASE_URL -e SMTP_HOST -e SMTP_PORT -e MAIL_FROM -e MAIL_TO portfolio:ci
+          for _ in $(seq 1 30); do curl -sf -o /dev/null http://localhost:3300/en && break; sleep 1; done
+          curl -sf -D - -o /dev/null http://localhost:3300/en | grep -i '^x-app-version: ci'
+          docker rm -f web
       - name: Lighthouse (mobile, performance and accessibility >= 90)
         run: pnpm dlx @lhci/cli@0.16.0 autorun
       - if: failure()

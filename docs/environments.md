@@ -7,7 +7,7 @@ What exists, how to get in and what e2e tests may do in each. Test accounts and 
 | local | `scripts/stack.sh info` | Seeded accounts (`scripts/stack.sh seed`) | Synthetic | Everything |
 | dev | None | — | — | — |
 | stage | None | — | — | — |
-| prod | None yet: DigitalOcean App Platform (`specs/003`) | Public site; no accounts | Real | Read-only smoke, with Alberto's explicit OK; never send the contact form |
+| prod | https://www.albertosanmartinmartinez.es (DigitalOcean App Platform, Frankfurt) | Public site; no accounts | Real | Read-only smoke, with Alberto's explicit OK; never send the contact form |
 
 Rules:
 

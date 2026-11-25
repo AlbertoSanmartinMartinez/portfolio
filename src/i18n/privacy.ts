@@ -20,7 +20,7 @@ export const privacyPolicy: Record<Locale, { path: string; sections: Section[] }
       {
         heading: "Quién más los trata",
         body: [
-          "El proveedor de alojamiento de la web y el servicio de correo de mi dominio, como encargados del tratamiento. No se ceden a nadie más.",
+          "DigitalOcean, que aloja la web y su base de datos en Fráncfort (Unión Europea), y el servicio de correo de mi dominio, como encargados del tratamiento. No se ceden a nadie más.",
         ],
       },
       {
@@ -47,7 +47,9 @@ export const privacyPolicy: Record<Locale, { path: string; sections: Section[] }
       { heading: "How long", body: ["12 months from when I receive it. Then it is deleted."] },
       {
         heading: "Who else processes it",
-        body: ["The site's hosting provider and the email service of my domain, as processors. It is not shared with anyone else."],
+        body: [
+          "DigitalOcean, which hosts the site and its database in Frankfurt (European Union), and the email service of my domain, as processors. It is not shared with anyone else.",
+        ],
       },
       {
         heading: "Your rights",

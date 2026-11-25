@@ -8,6 +8,7 @@ export const envSchema = z.object({
 /** Variables the API needs at runtime (docs/guides/config-secrets.md). SMTP_USER and SMTP_PASSWORD are secrets. */
 export const serverEnvSchema = z.object({
   DATABASE_URL: z.url(),
+  DATABASE_CA_CERT: z.string().optional(),
   SMTP_HOST: z.string().min(1),
   SMTP_PORT: z.coerce.number().int().positive(),
   SMTP_USER: z.string().optional(),
