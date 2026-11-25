@@ -1,10 +1,10 @@
-# TODO(adopt): project name
+# Alberto Sanmartín Martínez — portfolio
 
-TODO(adopt): one paragraph on what this project is and who it is for.
+The personal website of Alberto Sanmartín Martínez: who he is, his experience and projects, and a way to get in touch. Built with Next.js and PostgreSQL, hosted on DigitalOcean App Platform.
 
 ## Run it locally
 
-You need git and Docker with Compose v2. TODO(adopt): language toolchains, if the project needs them outside Docker.
+You need git, Docker with Compose v2, Node.js and pnpm (versions in `package.json` once `specs/001` lands). The stack runs PostgreSQL; the site runs with `pnpm dev`.
 
 ```bash
 scripts/stack.sh up      # start this worktree's stack

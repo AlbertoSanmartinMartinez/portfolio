@@ -18,12 +18,12 @@ The `adopt-template` skill fills this section. Skills read these facts instead o
 
 | Fact | Value |
 | --- | --- |
-| Product | TODO(adopt): one line on what this project is |
-| Stack | TODO(adopt): languages, frameworks, package managers |
-| Forge | TODO(adopt): `github` or `gitlab`; CLI `gh` or `glab`; "pull request" or "merge request" |
-| Tracker | TODO(adopt): name, how agents read and write it (CLI, MCP or API), key format |
-| Branches | Trunk-based: short branches from `main`, named `<type>/<key>-<slug>`. Protected branch: `main` |
-| Releases | Semver tags `vX.Y.Z` on `main`. An agent prepares, a person publishes. Publishers: TODO(adopt) |
+| Product | Alberto Sanmartín Martínez's personal portfolio website: profile, experience and projects, plus a contact form |
+| Stack | TypeScript, Next.js (App Router), pnpm, PostgreSQL with Drizzle ORM and Drizzle Kit migrations, OpenAPI contract for the contact API with a generated client, Playwright Test for e2e. Exact versions are set by `specs/001` |
+| Forge | `github` (`AlbertoSanmartinMartinez/portfolio`, public); CLI `gh`; "pull request" |
+| Tracker | Linear, team ALB, project "Personal". Agents use the Linear MCP server (the claude.ai connector, or https://mcp.linear.app/mcp). Keys `ALB-<n>`. Link issues in PRs as "related to ALB-n" |
+| Branches | Trunk-based: short branches from `main`, named `<type>/alb-<n>-<slug>`. Protected branch: `main` |
+| Releases | Semver tags `vX.Y.Z` on `main`. An agent prepares, a person publishes. Publishers: Alberto (@AlbertoSanmartinMartinez). Deploy: DigitalOcean App Platform with managed PostgreSQL |
 | Environments | `docs/environments.md` |
 
 ### Commands
@@ -32,7 +32,7 @@ Use quiet flags so failures are not buried in noise. `verify-changes` runs the r
 
 | Changed paths | Install | Lint | Types | Test | E2E |
 | --- | --- | --- | --- | --- | --- |
-| TODO(adopt) | | | | | |
+| `package.json`, `src/**`, `tests/**` | None yet: `specs/001` adds them | | | | |
 | Any path | | | | `python3 scripts/check_harness.py` | |
 
 Local stack: `scripts/stack.sh up | info | logs | seed | down`.
@@ -121,4 +121,6 @@ Claude Code, Cursor and Copilot in VS Code load `.claude/agents/<role>.md` as su
 
 ## Project rules
 
-TODO(adopt): rules specific to this project (architecture boundaries, security rules, product constraints). Each one gets an entry in `docs/invariants.md` with the check that enforces it.
+- The site is public: everything committed is public too. No secrets, no personal data other than what Alberto publishes on purpose, no contact messages.
+- Contact messages are personal data: stored only in PostgreSQL, never logged in full, never copied out of production (`docs/guides/privacy.md`).
+- Each rule that must always hold gets an entry in `docs/invariants.md` with the check that enforces it.

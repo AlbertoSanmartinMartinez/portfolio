@@ -6,11 +6,11 @@ Code generated from a contract: API clients and types from an OpenAPI spec, SDKs
 
 | Fact | Value |
 | --- | --- |
-| Source of truth | TODO(adopt): spec file, or the server code it is generated from |
-| Generator and command | TODO(adopt) |
-| Output paths | TODO(adopt) |
-| Published as a package | TODO(adopt): no, or registry and package name |
-| Consumers and deploy order | TODO(adopt) |
+| Source of truth | `openapi/openapi.yaml` |
+| Generator and command | openapi-typescript: `pnpm api:generate` (added by `specs/002`) |
+| Output paths | `src/lib/api/schema.d.ts` |
+| Published as a package | No |
+| Consumers and deploy order | The site's own contact form; deployed together |
 
 ## Rules
 
@@ -25,6 +25,6 @@ Code generated from a contract: API clients and types from an OpenAPI spec, SDKs
 
 | Rule | Enforced by |
 | --- | --- |
-| Generated code matches its source (1–3) | CI regenerates and runs `git diff --exit-code` on the output paths: TODO(adopt) |
-| No hand edits (2) | `deny` of `Edit(<output path>/**)` in `.claude/settings.json`: TODO(adopt) |
+| Generated code matches its source (1–3) | None yet: CI regenerates and runs `git diff --exit-code src/lib/api/schema.d.ts`, added by `specs/002` |
+| No hand edits (2) | `deny` of `Edit(**/src/lib/api/schema.d.ts)` in `.claude/settings.json` |
 | Contract changes reviewed (3) | `update-api-contract`, `review-code` |

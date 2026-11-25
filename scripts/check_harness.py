@@ -236,6 +236,11 @@ def check_pins(root: Path) -> None:
                     fail(f"{name}:{number}", "pin images by digest")
 
 
+def placeholder_doc(rel: Path) -> bool:
+    """Files that talk about the placeholder rather than contain one."""
+    return rel.name == "check_harness.py" or rel.parts[:3] == (".agents", "skills", "adopt-template")
+
+
 def check_links_and_symlinks(root: Path, adopted: bool) -> None:
     for path in walk(root):
         rel = path.relative_to(root)
@@ -248,7 +253,7 @@ def check_links_and_symlinks(root: Path, adopted: bool) -> None:
             text = path.read_text(encoding="utf-8")
         except (UnicodeDecodeError, OSError):
             continue
-        if adopted and path.name != "check_harness.py" and PLACEHOLDER.search(text):
+        if adopted and not placeholder_doc(rel) and PLACEHOLDER.search(text):
             fail(rel, "TODO(adopt) placeholders remain")
         if path.suffix != ".md":
             continue

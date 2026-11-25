@@ -6,11 +6,11 @@ What is tested where, with which data, and what to do with flaky tests. Skills: 
 
 | Fact | Value |
 | --- | --- |
-| Unit and integration frameworks | TODO(adopt) |
-| E2E framework | TODO(adopt): Playwright Test recommended for web |
-| Where tests live | TODO(adopt) |
-| Diff coverage target | TODO(adopt): for example 80% of changed lines |
-| Quarantine mechanism | TODO(adopt): tag or marker, and how CI treats it |
+| Unit and integration frameworks | Vitest |
+| E2E framework | Playwright Test |
+| Where tests live | `tests/unit/`, `tests/integration/`, `tests/e2e/` |
+| Diff coverage target | 80% of changed lines |
+| Quarantine mechanism | `test.fixme` or `it.skip` with a comment `quarantined: ALB-<n> until <date>`; CI reports skipped tests |
 
 ## Levels
 
@@ -36,5 +36,5 @@ What is tested where, with which data, and what to do with flaky tests. Skills: 
 | Rule | Enforced by |
 | --- | --- |
 | Tests pass for changed paths | CI, `verify-changes` |
-| Diff coverage (6) | TODO(adopt): CI step |
+| Diff coverage (6) | None yet: added by `specs/001` |
 | Criteria covered (1) | `review-code`, the PR's Evidence section |

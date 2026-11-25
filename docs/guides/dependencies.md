@@ -6,12 +6,12 @@ How libraries, internal packages, tools and base images get in and stay current.
 
 | Fact | Value |
 | --- | --- |
-| Package managers and lockfiles | TODO(adopt) |
-| Workspace layout (internal libraries) | TODO(adopt) |
-| Import boundaries and their check | TODO(adopt): for example import-linter, dependency-cruiser, eslint boundaries |
-| License allowlist | TODO(adopt): for example MIT, Apache-2.0, BSD, ISC |
-| Release-age quarantine | TODO(adopt): for example 3 days |
-| Automated updates | TODO(adopt): Renovate or Dependabot config path |
+| Package managers and lockfiles | pnpm, `pnpm-lock.yaml` |
+| Workspace layout (internal libraries) | One package, no workspaces |
+| Import boundaries and their check | UI components never import `src/db/`; checked by ESLint `no-restricted-imports`, added by `specs/001` |
+| License allowlist | MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, 0BSD |
+| Release-age quarantine | 3 days (`minimumReleaseAge` in `pnpm-workspace.yaml`) |
+| Automated updates | Dependabot, `.github/dependabot.yml` (added by `specs/001`) |
 
 ## Rules
 
@@ -30,7 +30,7 @@ How libraries, internal packages, tools and base images get in and stay current.
 
 | Rule | Enforced by |
 | --- | --- |
-| Lockfile in sync (1, 2) | CI install in locked mode: TODO(adopt) |
+| Lockfile in sync (1, 2) | `pnpm install --frozen-lockfile` in CI (added by `specs/001`) |
 | Known vulnerabilities (8) | OSV-Scanner in `.github/workflows/quality.yml` and `.gitlab-ci.yml` |
-| Import boundaries (4) | TODO(adopt) |
+| Import boundaries (4) | ESLint `no-restricted-imports` (added by `specs/001`) |
 | Justification and license (3, 5) | `review-code`, `review-security` |

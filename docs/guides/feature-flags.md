@@ -6,8 +6,8 @@ How unfinished or risky work merges to `main` without being switched on. Skill: 
 
 | Fact | Value |
 | --- | --- |
-| Flag mechanism | TODO(adopt): config variables, a flags module, or a service |
-| Where flags are declared | TODO(adopt): one registry file or module |
+| Flag mechanism | Environment variables `FLAG_<NAME>`, read through `src/flags.ts` |
+| Where flags are declared | `src/flags.ts` (created with the first flag) |
 
 ## Rules
 

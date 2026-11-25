@@ -6,10 +6,10 @@ How personal and confidential data is handled in code, tests, logs and Git. Appl
 
 | Fact | Value |
 | --- | --- |
-| Personal data the product stores | TODO(adopt): inventory (fields, purpose, where) |
-| Retention | TODO(adopt) |
-| Regulations that apply | TODO(adopt): for example GDPR |
-| Who handles data requests | TODO(adopt) |
+| Personal data the product stores | Contact messages: name, email, message, received at. Purpose: replying to the sender. Table `contact_message` (`specs/002`) |
+| Retention | 12 months, then deleted |
+| Regulations that apply | GDPR; the contact form shows a privacy notice |
+| Who handles data requests | Alberto |
 
 ## Rules
 
