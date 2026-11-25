@@ -1,0 +1,61 @@
+# Harness and quality checks. They are fast, so they run on draft pull requests too.
+# Make `quality-ok` a required check (docs/guides/ci-cd.md). Actions are pinned by
+# SHA and images by digest; scripts/check_harness.py enforces it.
+name: quality
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  harness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: python3 scripts/check_harness.py .
+
+  workflows:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: docker run --rm -v "$PWD:/repo" -w /repo rhysd/actionlint:1.7.12@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667 -color
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: docker run --rm -v "$PWD:/repo" -w /repo ghcr.io/gitleaks/gitleaks:v8.30.1@sha256:c00b6bd0aeb3071cbcb79009cb16a60dd9e0a7c60e2be9ab65d25e6bc8abbb7f dir --redact --no-banner .
+
+  static-analysis:
+    runs-on: ubuntu-latest
+    container: semgrep/semgrep:1.185.0@sha256:67518c174185a2043fdbed16c70631b79209499b3671178e7194379b48295a0d
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: semgrep scan --config p/default --metrics off --error
+
+  dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      # Exit code 128 means no lockfiles yet, which is fine for a new project.
+      - run: |
+          set +e
+          docker run --rm -v "$PWD:/src" ghcr.io/google/osv-scanner:v2.7.1@sha256:a70ffffc2bfd33482953e5d6b64c6fcdb30239717a07b0f0d3ab2859ce3e4cde scan source -r /src
+          rc=$?
+          [ $rc -eq 0 ] || [ $rc -eq 128 ]
+
+  quality-ok:
+    if: always()
+    needs: [harness, workflows, secrets, static-analysis, dependencies]
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo '${{ toJSON(needs) }}' | python3 -c 'import json,sys; bad=[k for k,v in json.load(sys.stdin).items() if v["result"]!="success"]; print("failed:", bad) if bad else print("all green"); sys.exit(1 if bad else 0)'

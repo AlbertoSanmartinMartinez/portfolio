@@ -1,0 +1,11 @@
+# Codex project config (read only in trusted projects).
+# The MCP servers mirror .mcp.json; scripts/check_harness.py fails if they drift.
+
+[mcp_servers.browser]
+command = "npx"
+args = ["-y", "@playwright/mcp@0.0.85", "--headless", "--isolated", "--output-dir", ".playwright-mcp"]
+
+[mcp_servers.db-local]
+command = "npx"
+args = ["-y", "@bytebase/dbhub@1.6.0", "--transport", "stdio", "--config", ".agents/mcp/dbhub.toml"]
+env_vars = ["DB_LOCAL_DSN"]

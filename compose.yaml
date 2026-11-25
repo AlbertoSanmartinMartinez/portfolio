@@ -1,0 +1,38 @@
+# Example local stack. `adopt-template` replaces these services with the project's.
+# Run it only through scripts/stack.sh, which names the project per worktree.
+# Host ports are dynamic ("127.0.0.1::<port>") so several worktrees can run at once;
+# `scripts/stack.sh info` prints them. Images are pinned by digest
+# (docs/guides/dependencies.md).
+services:
+  app:
+    image: nginx:1.29-alpine@sha256:5616878291a2eed594aee8db4dade5878cf7edcb475e59193904b198d9b830de
+    ports:
+      - "127.0.0.1::80"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1/ >/dev/null || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:17-alpine@sha256:f9cf3e1f0066f0eb0c48707d864f0ac5941e9ff454a072077d97a4d278d07d73
+    environment:
+      # Local-only credentials for synthetic data; never reused anywhere else.
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+      POSTGRES_DB: app
+    ports:
+      - "127.0.0.1::5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d app"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  db-data:

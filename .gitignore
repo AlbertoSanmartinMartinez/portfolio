@@ -1,0 +1,13 @@
+# Secrets and local overrides
+.env
+.env.*
+!.env.example
+*.local.json
+.claude/settings.local.json
+
+# Editors and note apps
+.obsidian/
+.DS_Store
+
+# Browser MCP output (screenshots go to the PR, not the repo)
+.playwright-mcp/

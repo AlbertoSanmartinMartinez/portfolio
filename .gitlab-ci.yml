@@ -1,0 +1,38 @@
+# Harness and quality checks for GitLab. If the project already has a pipeline,
+# adopt-template merges these jobs into it. Images are pinned by digest.
+stages:
+  - quality
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+harness:
+  stage: quality
+  image: python:3.12-alpine@sha256:c5ba3deef00c7758561a0f03c26f44f10589263d40e732b8748e0d1f38f6dd89
+  script:
+    - python3 scripts/check_harness.py .
+
+secrets:
+  stage: quality
+  image:
+    name: ghcr.io/gitleaks/gitleaks:v8.30.1@sha256:c00b6bd0aeb3071cbcb79009cb16a60dd9e0a7c60e2be9ab65d25e6bc8abbb7f
+    entrypoint: [""]
+  script:
+    - gitleaks dir --redact --no-banner .
+
+static-analysis:
+  stage: quality
+  image: semgrep/semgrep:1.185.0@sha256:67518c174185a2043fdbed16c70631b79209499b3671178e7194379b48295a0d
+  script:
+    - semgrep scan --config p/default --metrics off --error
+
+dependencies:
+  stage: quality
+  image:
+    name: ghcr.io/google/osv-scanner:v2.7.1@sha256:a70ffffc2bfd33482953e5d6b64c6fcdb30239717a07b0f0d3ab2859ce3e4cde
+    entrypoint: [""]
+  script:
+    # Exit code 128 means no lockfiles yet, which is fine for a new project.
+    - /osv-scanner scan source -r . || [ $? -eq 128 ]

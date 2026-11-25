@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Activated by `git config core.hooksPath .githooks` (adopt-template).
+exec "$(git rev-parse --show-toplevel)/.agents/hooks/block-protected-push.sh" "$@"

@@ -1,0 +1,11 @@
+# DBHub configuration for the db-local MCP server: read-only, local stack only.
+# DB_LOCAL_DSN comes from `scripts/stack.sh info`; never point it at a shared database.
+[[sources]]
+id = "local"
+dsn = "${DB_LOCAL_DSN}"
+
+[[tools]]
+name = "execute_sql"
+source = "local"
+readonly = true
+max_rows = 1000

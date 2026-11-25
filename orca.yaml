@@ -1,0 +1,18 @@
+# Orca worktree hooks. Both run with /bin/bash; they cd to the worktree root first.
+#
+# setup:   when Orca creates a worktree. Starts this worktree's stack.
+# archive: before Orca deletes the worktree. Removes this worktree's stack and volumes.
+#
+# Orca reads setup from the new worktree's orca.yaml but archive from the primary
+# checkout, so archive only runs once this file is on the branch checked out there.
+scripts:
+  setup: |
+    cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
+    scripts/stack.sh up
+  archive: |
+    cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 0
+    if [ ! -x scripts/stack.sh ] || [ ! -f compose.yaml ]; then
+      echo "archive: no local stack in this worktree"
+      exit 0
+    fi
+    scripts/stack.sh down

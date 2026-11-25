@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "browser": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@0.0.85", "--headless", "--isolated", "--output-dir", ".playwright-mcp"]
+    },
+    "db-local": {
+      "command": "npx",
+      "args": ["-y", "@bytebase/dbhub@1.6.0", "--transport", "stdio", "--config", ".agents/mcp/dbhub.toml"]
+    }
+  }
+}
