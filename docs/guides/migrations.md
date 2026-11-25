@@ -32,8 +32,8 @@ How the database schema changes. Migrations run before the new code is live, whi
 
 | Rule | Enforced by |
 | --- | --- |
-| One head (6) | None yet: `drizzle-kit check` in CI, added by `specs/002` |
-| Migrations apply on an empty database with production-like roles (2, 9) | None yet: CI job added by `specs/002` |
+| One head (6) | `pnpm db:check` (drizzle-kit check) in `.github/workflows/ci.yml` |
+| Migrations apply on an empty database with production-like roles (2, 9) | `pnpm db:migrate` on a fresh PostgreSQL in the `full` job of `.github/workflows/ci.yml` |
 | A schema change has a migration (1) | `verify-changes`, `review-code` |
 | Compatibility with deployed code (2–4) | `review-code`, the PR's Risk section |
 

@@ -1,9 +1,47 @@
 {
-  "sections": { "about": "About", "experience": "Experience", "projects": "Projects", "contact": "Contact" },
-  "languageSwitch": { "label": "Español", "ariaLabel": "Switch to Spanish" },
-  "menu": { "open": "Open menu", "close": "Close menu" },
+  "sections": {
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "languageSwitch": {
+    "label": "Español",
+    "ariaLabel": "Switch to Spanish"
+  },
+  "menu": {
+    "open": "Open menu",
+    "close": "Close menu"
+  },
   "present": "Present",
   "contactIntro": "Let's talk. Write to me or find me on:",
-  "notFound": { "title": "This page doesn't exist.", "back": "Back to home" },
-  "photoAlt": "Photo of {name}"
+  "notFound": {
+    "title": "This page doesn't exist.",
+    "back": "Back to home"
+  },
+  "photoAlt": "Photo of {name}",
+  "contactForm": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send",
+    "sending": "Sending…",
+    "success": "Thanks, I'll get back to you soon.",
+    "errors": {
+      "required": "This field is required.",
+      "invalid_email": "Enter a valid email address.",
+      "too_short": "Tell me a bit more (at least 10 characters).",
+      "too_long": "The message is too long (5,000 characters at most).",
+      "too_long_name": "The name is too long (100 characters at most)."
+    },
+    "rateLimited": "You've sent several messages in a row. Please try again in an hour.",
+    "failure": "It couldn't be sent. Please try again.",
+    "privacyNotice": "I'll use your details only to reply and delete them after 12 months. More in the",
+    "privacyLink": "privacy policy",
+    "honeypot": "Leave this field empty"
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "back": "Back to home"
+  }
 }

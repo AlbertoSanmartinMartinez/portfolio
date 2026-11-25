@@ -1,9 +1,47 @@
 {
-  "sections": { "about": "Sobre mí", "experience": "Experiencia", "projects": "Proyectos", "contact": "Contacto" },
-  "languageSwitch": { "label": "English", "ariaLabel": "Cambiar a inglés" },
-  "menu": { "open": "Abrir menú", "close": "Cerrar menú" },
+  "sections": {
+    "about": "Sobre mí",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "languageSwitch": {
+    "label": "English",
+    "ariaLabel": "Cambiar a inglés"
+  },
+  "menu": {
+    "open": "Abrir menú",
+    "close": "Cerrar menú"
+  },
   "present": "Actualidad",
   "contactIntro": "¿Hablamos? Escríbeme o encuéntrame en:",
-  "notFound": { "title": "Esta página no existe.", "back": "Volver al inicio" },
-  "photoAlt": "Foto de {name}"
+  "notFound": {
+    "title": "Esta página no existe.",
+    "back": "Volver al inicio"
+  },
+  "photoAlt": "Foto de {name}",
+  "contactForm": {
+    "name": "Nombre",
+    "email": "Email",
+    "message": "Mensaje",
+    "send": "Enviar",
+    "sending": "Enviando…",
+    "success": "Gracias, te responderé pronto.",
+    "errors": {
+      "required": "Este campo es obligatorio.",
+      "invalid_email": "Escribe un email válido.",
+      "too_short": "Cuéntame un poco más (mínimo 10 caracteres).",
+      "too_long": "El mensaje es demasiado largo (máximo 5.000 caracteres).",
+      "too_long_name": "El nombre es demasiado largo (máximo 100 caracteres)."
+    },
+    "rateLimited": "Has enviado varios mensajes seguidos. Prueba de nuevo en una hora.",
+    "failure": "No se ha podido enviar. Inténtalo de nuevo.",
+    "privacyNotice": "Usaré tus datos solo para responderte y los borraré a los 12 meses. Más información en la",
+    "privacyLink": "política de privacidad",
+    "honeypot": "Deja este campo vacío"
+  },
+  "privacy": {
+    "title": "Política de privacidad",
+    "back": "Volver al inicio"
+  }
 }

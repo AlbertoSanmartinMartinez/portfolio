@@ -37,4 +37,17 @@ Rules that must always hold. Each one names the checks that enforce it under "En
 - Why: a missing field or language would show a broken page; the build must fail instead.
 - Enforced by: `src/content/load.ts`, `tests/unit/content.test.ts`
 
-Contact message privacy and migrations get their invariants with `specs/002`.
+## INV-008: Contact data never reaches the logs
+
+- Why: names, emails, messages and IP addresses are personal data; logs are kept and shared more widely than the database.
+- Enforced by: `tests/unit/contact-service.test.ts`
+
+## INV-009: One consistent migration history
+
+- Why: a fork or a hand-edited snapshot breaks deploys silently.
+- Enforced by: `.github/workflows/ci.yml`, `drizzle.config.ts`
+
+## INV-010: The generated client matches the contract
+
+- Why: a stale client compiles and fails at runtime.
+- Enforced by: `.github/workflows/ci.yml`, `openapi/openapi.yaml`

@@ -26,6 +26,7 @@ const eslintConfig = defineConfig([
     "playwright-report/**",
     "test-results/**",
     ".lighthouseci/**",
+    "src/lib/api/schema.d.ts",
   ]),
 ]);
 

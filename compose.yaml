@@ -1,4 +1,4 @@
-# Local stack: PostgreSQL for this worktree. The site itself runs on the host with
+# Local stack: PostgreSQL and Mailpit (a local SMTP server that keeps every email) for this worktree. The site itself runs on the host with
 # `pnpm dev`. Run it only through scripts/stack.sh, which names the project per
 # worktree; the host port is dynamic and `scripts/stack.sh info` prints it with the
 # DB_LOCAL_DSN to export. Images are pinned by digest (docs/guides/dependencies.md).
@@ -16,6 +16,17 @@ services:
       - db-data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U app -d app"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  mail:
+    image: axllent/mailpit:v1.33.1@sha256:aef2aacc11f075ec0fb6874275ee4a421e688e11a96ebb296134d1735c7761ce
+    ports:
+      - "127.0.0.1::1025"
+      - "127.0.0.1::8025"
+    healthcheck:
+      test: ["CMD", "/mailpit", "readyz"]
       interval: 5s
       timeout: 3s
       retries: 10

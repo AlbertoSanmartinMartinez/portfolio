@@ -1,6 +1,12 @@
 # pnpm settings (docs/guides/dependencies.md).
 # New releases wait 7 days before they can be installed, except security fixes.
 minimumReleaseAge: 10080
+# Install scripts are denied unless a package needs them to work.
 allowBuilds:
+  esbuild: false
   sharp: false
   unrs-resolver: false
+# GHSA-67mh-4wv8-2f99: drizzle-kit 0.31.11 pulls esbuild 0.18 through @esbuild-kit/core-utils.
+# Remove when drizzle-kit drops @esbuild-kit (docs/guides/dependencies.md, rule 7).
+overrides:
+  "@esbuild-kit/core-utils>esbuild": 0.25.12

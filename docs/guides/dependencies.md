@@ -9,9 +9,10 @@ How libraries, internal packages, tools and base images get in and stay current.
 | Package managers and lockfiles | pnpm, `pnpm-lock.yaml` |
 | Workspace layout (internal libraries) | One package, no workspaces |
 | Import boundaries and their check | UI components never import `src/db/`; checked by ESLint `no-restricted-imports` in `eslint.config.mjs` |
-| License allowlist | MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, 0BSD |
+| License allowlist | MIT, MIT-0, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, 0BSD (`postgres` was rejected for Unlicense; `pg` used instead) |
 | Release-age quarantine | 7 days (`minimumReleaseAge: 10080` in `pnpm-workspace.yaml`, `cooldown` in `.github/dependabot.yml`) |
 | Automated updates | Dependabot, `.github/dependabot.yml` |
+| Current overrides | `esbuild` 0.25.12 under `@esbuild-kit/core-utils` (drizzle-kit), for GHSA-67mh-4wv8-2f99; see `pnpm-workspace.yaml` |
 
 ## Rules
 

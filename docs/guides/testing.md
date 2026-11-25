@@ -36,5 +36,5 @@ What is tested where, with which data, and what to do with flaky tests. Skills: 
 | Rule | Enforced by |
 | --- | --- |
 | Tests pass for changed paths | CI, `verify-changes` |
-| Diff coverage (6) | diff-cover in `.github/workflows/ci.yml` |
+| Diff coverage (6) | diff-cover on unit and integration coverage in the `full` job of `.github/workflows/ci.yml` |
 | Criteria covered (1) | `review-code`, the PR's Evidence section |

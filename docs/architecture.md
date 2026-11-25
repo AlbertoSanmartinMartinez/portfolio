@@ -13,9 +13,13 @@ A Next.js app (App Router) renders the portfolio pages from content files and se
 | Pages and UI | `src/app/[lang]/`, `src/components/` | Profile, experience, projects, contact links, localized 404 | Content, dictionaries |
 | Content | `content/<lang>/*.json`, validated by `src/content/` | Profile, experience and projects per language | — |
 | Languages | `src/i18n/`, `src/proxy.ts` | Locale choice (cookie, then browser), UI copy per language | — |
-| Contact API (*planned*, `specs/002`) | `src/app/api/v1/contact/` | Validates and stores contact messages | Database |
-| Database access (*planned*, `specs/002`) | `src/db/` | Drizzle schema and queries | PostgreSQL |
-| Generated API client (*planned*, `specs/002`) | `src/lib/api/schema.d.ts` | Types for calling the contact API | — |
+| Contact form | `src/components/ContactForm.tsx` | Fields, states and errors; calls the API through the generated client | Contact API |
+| Contact API | `src/app/api/v1/contact/route.ts` | Origin and size checks, then the contact service | Contact service |
+| Contact service | `src/contact/` | Rules, honeypot, rate limit, store, mail; ports with fakes in tests | Database, SMTP |
+| Database access | `src/db/` | Drizzle schema, pool and the contact store | PostgreSQL |
+| Mail | `src/mail/smtp.ts` | Sends each message to Alberto over SMTP | SMTP server (Mailpit locally) |
+| Generated API client | `src/lib/api/` | Types generated from `openapi/openapi.yaml` and the typed client | — |
+| Privacy pages | `src/app/[lang]/privacy/`, `src/app/[lang]/privacidad/` | Privacy policy per language | — |
 
 ## Boundaries
 
@@ -24,7 +28,7 @@ UI components never import `src/db/`; only server code (route handlers) does. En
 ## Main flows
 
 1. A visitor opens `/`: `src/proxy.ts` redirects to `/es` or `/en`; the page is prerendered at build time from `content/<lang>/`.
-2. A visitor sends the contact form: the form calls `POST /api/v1/contact` through the generated client; the API validates, stores the message and answers with its id.
+2. A visitor sends the contact form: the form validates, then calls `POST /api/v1/contact` through the generated client; the API checks origin and size, drops spam, applies the rate limit, stores the message, deletes those older than 12 months, mails Alberto and answers with the id.
 
 ## Where things live
 

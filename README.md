@@ -16,6 +16,17 @@ scripts/stack.sh down    # stop it and remove its volumes
 
 Each git worktree gets its own stack, so several can run at once.
 
+Then run the site against it:
+
+```bash
+nvm use                                         # Node from .nvmrc
+pnpm install --frozen-lockfile
+eval "$(scripts/stack.sh info | grep ^export)"  # database and SMTP (Mailpit) variables
+export SITE_URL=http://localhost:3000
+pnpm db:migrate && scripts/stack.sh seed
+pnpm dev                                        # emails sent by the form show up in Mailpit ($MAILPIT_URL)
+```
+
 ## How this repo works
 
 - [Architecture](docs/architecture.md): what lives where and how the parts connect.
