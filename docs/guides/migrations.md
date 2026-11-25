@@ -6,14 +6,14 @@ How the database schema changes. Migrations run before the new code is live, whi
 
 | Fact | Value |
 | --- | --- |
-| Database and migration tool | TODO(adopt) |
-| Create a migration | TODO(adopt): command |
-| Apply / roll back locally | TODO(adopt): commands |
-| Naming convention | TODO(adopt) |
-| Autogenerate allowed | TODO(adopt): yes or no, and when |
-| Who writes migrations | TODO(adopt): agents, or people only |
-| Who runs them in shared environments | TODO(adopt): pipeline step, or a named person |
-| Lock and statement timeout budget | TODO(adopt) |
+| Database and migration tool | PostgreSQL 17; Drizzle ORM and Drizzle Kit |
+| Create a migration | Edit `src/db/schema.ts`, then `pnpm drizzle-kit generate --name <slug>` |
+| Apply / roll back locally | `pnpm drizzle-kit migrate`. Drizzle Kit has no down migrations: rule 7 is met by a forward migration that reverts the change, written and tested in the same PR when the change is risky |
+| Naming convention | `drizzle/NNNN_<slug>.sql`, numbered by Drizzle Kit |
+| Autogenerate allowed | Yes, from the schema; the generated SQL is reviewed and committed |
+| Who writes migrations | Agents, reviewed by Alberto in the PR |
+| Who runs them in shared environments | None yet: the deploy spec (`specs/003`) decides, likely an App Platform pre-deploy job |
+| Lock and statement timeout budget | `lock_timeout` 5 s, `statement_timeout` 60 s |
 
 ## Rules
 
@@ -32,8 +32,8 @@ How the database schema changes. Migrations run before the new code is live, whi
 
 | Rule | Enforced by |
 | --- | --- |
-| One head (6) | TODO(adopt): test or CI step |
-| Migrations apply on an empty database with production-like roles (2, 9) | TODO(adopt): CI job |
+| One head (6) | None yet: `drizzle-kit check` in CI, added by `specs/002` |
+| Migrations apply on an empty database with production-like roles (2, 9) | None yet: CI job added by `specs/002` |
 | A schema change has a migration (1) | `verify-changes`, `review-code` |
 | Compatibility with deployed code (2–4) | `review-code`, the PR's Risk section |
 

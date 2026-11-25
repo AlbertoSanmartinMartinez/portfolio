@@ -6,10 +6,10 @@ How settings reach the code, and where secrets live. Skill: `add-config-variable
 
 | Fact | Value |
 | --- | --- |
-| Where config is defined and validated | TODO(adopt): settings module or schema |
-| Secret store for CI/CD | TODO(adopt): forge secrets, vault, cloud secret manager |
-| Secret store per environment | TODO(adopt) |
-| Who sets secrets | TODO(adopt) |
+| Where config is defined and validated | `src/env.ts`, a schema validated at startup (added by `specs/001`) |
+| Secret store for CI/CD | GitHub Actions secrets |
+| Secret store per environment | DigitalOcean App Platform encrypted environment variables |
+| Who sets secrets | Alberto |
 
 ## Rules
 
@@ -27,4 +27,4 @@ How settings reach the code, and where secrets live. Skill: `add-config-variable
 | --- | --- |
 | No secrets in commits (3) | `.agents/hooks/scan-secrets.sh`, gitleaks in `.github/workflows/quality.yml` and `.gitlab-ci.yml` |
 | Agents can't read local secret files (3) | `deny` of `Read(**/.env)` in `.claude/settings.json` |
-| Every variable is in `.env.example` (2) | TODO(adopt): check command |
+| Every variable is in `.env.example` (2) | None yet: a test comparing `src/env.ts` with `.env.example`, added by `specs/001` |

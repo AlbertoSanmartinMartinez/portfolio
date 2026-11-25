@@ -34,7 +34,7 @@ import json, os
 raw = os.environ["STACK_PS"].strip()
 rows = json.loads(raw) if raw.startswith("[") else [json.loads(l) for l in raw.splitlines() if l.strip()]
 for r in rows:
-    ports = sorted({"http://%s:%s -> %s" % (p["URL"], p["PublishedPort"], p["TargetPort"])
+    ports = sorted({"%s:%s -> %s" % (p["URL"], p["PublishedPort"], p["TargetPort"])
                     for p in (r.get("Publishers") or []) if p.get("PublishedPort")})
     print("  %-10s %-8s %-10s %s" % (r["Service"], r["State"], r.get("Health") or "-",
                                     ", ".join(ports) or "no published ports"))

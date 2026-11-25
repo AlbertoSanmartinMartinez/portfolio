@@ -6,11 +6,11 @@ How a public or internal API changes without breaking its callers. Skill: `updat
 
 | Fact | Value |
 | --- | --- |
-| Contract format and file | TODO(adopt): OpenAPI, GraphQL SDL, protobuf… |
-| Versioning scheme | TODO(adopt): URL prefix, header, or schema evolution only |
-| Breaking-change detector | TODO(adopt): oasdiff, graphql-inspector, buf breaking… |
-| Known consumers | TODO(adopt) |
-| Deprecation window | TODO(adopt) |
+| Contract format and file | OpenAPI 3.1, `openapi/openapi.yaml` |
+| Versioning scheme | URL prefix `/api/v1` |
+| Breaking-change detector | oasdiff (added to CI by `specs/002`) |
+| Known consumers | The site's own contact form |
+| Deprecation window | None while the site is the only consumer; 30 days if an external one appears |
 
 ## Rules
 
@@ -25,5 +25,5 @@ How a public or internal API changes without breaking its callers. Skill: `updat
 
 | Rule | Enforced by |
 | --- | --- |
-| No unannounced breaking change (3) | TODO(adopt): detector in CI against `main` |
+| No unannounced breaking change (3) | None yet: oasdiff against `main`, added by `specs/002` |
 | Clients regenerated (6) | Drift check from `generated-clients.md` |

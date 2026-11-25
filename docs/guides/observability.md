@@ -6,10 +6,10 @@ What every change must leave behind so production problems can be seen and expla
 
 | Fact | Value |
 | --- | --- |
-| Logging library and format | TODO(adopt): structured JSON logger |
-| Metrics and traces | TODO(adopt): OpenTelemetry, Prometheus… |
-| Error tracking | TODO(adopt) |
-| Dashboards and alerts | TODO(adopt): where they live and who owns them |
+| Logging library and format | Structured JSON to stdout (logger chosen in `specs/001`), collected by App Platform |
+| Metrics and traces | None yet: App Platform insights for now |
+| Error tracking | None yet |
+| Dashboards and alerts | DigitalOcean App Platform insights and alerts, owned by Alberto |
 
 ## Rules
 

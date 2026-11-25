@@ -5,7 +5,7 @@ Rules that must always hold. Each one names the checks that enforce it under "En
 ## INV-001: Secrets never reach the repository
 
 - Why: a leaked secret has to be rotated everywhere and stays in Git history.
-- Enforced by: `.agents/hooks/scan-secrets.sh`, `.githooks/pre-commit`, `.github/workflows/quality.yml`, `.gitlab-ci.yml`
+- Enforced by: `.agents/hooks/scan-secrets.sh`, `.githooks/pre-commit`, `.github/workflows/quality.yml`
 
 ## INV-002: The harness has one source
 
@@ -25,6 +25,6 @@ Rules that must always hold. Each one names the checks that enforce it under "En
 ## INV-005: Harness changes need a person's review
 
 - Why: an agent must not relax its own rules.
-- Enforced by: `.github/CODEOWNERS`, `.gitlab/CODEOWNERS`, `.claude/settings.json`
+- Enforced by: `.github/CODEOWNERS`, `.claude/settings.json`
 
-TODO(adopt): project invariants (architecture boundaries, tenancy, generated code, migrations…), each with its check.
+Project invariants are added, each with its check, by the spec that creates what they protect: the UI/database boundary by `specs/001`, contact message privacy and migrations by `specs/002`.

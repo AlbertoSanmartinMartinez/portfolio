@@ -12,7 +12,8 @@
       "Bash(glab release create:*)",
       "Read(**/.env)",
       "Read(**/.env.local)",
-      "Read(**/.env.*.local)"
+      "Read(**/.env.*.local)",
+      "Edit(**/src/lib/api/schema.d.ts)"
     ],
     "ask": [
       "Bash(git reset --hard:*)",
@@ -46,7 +47,10 @@
       {
         "matcher": "Bash",
         "hooks": [
-          { "type": "command", "command": "\"$CLAUDE_PROJECT_DIR\"/.agents/hooks/block-unsafe-commands.sh" }
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.agents/hooks/block-unsafe-commands.sh"
+          }
         ]
       }
     ],
@@ -54,7 +58,10 @@
       {
         "matcher": "Edit|Write|MultiEdit",
         "hooks": [
-          { "type": "command", "command": "\"$CLAUDE_PROJECT_DIR\"/.agents/hooks/format-edited-file.sh" }
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.agents/hooks/format-edited-file.sh"
+          }
         ]
       }
     ]

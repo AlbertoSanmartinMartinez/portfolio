@@ -5,9 +5,9 @@ What exists, how to get in and what e2e tests may do in each. Test accounts and 
 | Environment | URL | Access | Data | E2E allowed |
 | --- | --- | --- | --- | --- |
 | local | `scripts/stack.sh info` | Seeded accounts (`scripts/stack.sh seed`) | Synthetic | Everything |
-| dev | TODO(adopt) | TODO(adopt): variable names | Synthetic | Everything |
-| stage | TODO(adopt) | TODO(adopt): variable names | Synthetic or anonymized | Everything |
-| prod | TODO(adopt) | TODO(adopt): test account variable names | Real | Read-only smoke, with a person's explicit OK |
+| dev | None | — | — | — |
+| stage | None | — | — | — |
+| prod | None yet: DigitalOcean App Platform (`specs/003`) | Public site; no accounts | Real | Read-only smoke, with Alberto's explicit OK; never send the contact form |
 
 Rules:
 

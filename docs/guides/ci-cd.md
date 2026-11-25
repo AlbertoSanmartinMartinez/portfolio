@@ -6,10 +6,10 @@ How changes are checked, built and deployed. Pipelines are code and follow the s
 
 | Fact | Value |
 | --- | --- |
-| CI provider and files | TODO(adopt): `.github/workflows/` or `.gitlab-ci.yml` |
-| Required check | TODO(adopt): the single aggregator job |
-| Registry and image tags | TODO(adopt) |
-| Deploy mechanism | TODO(adopt): GitOps (Argo CD, Flux), pipeline step, or manual |
+| CI provider and files | GitHub Actions, `.github/workflows/` |
+| Required check | `quality-ok` today; the app's aggregator joins it in `specs/001` |
+| Registry and image tags | None: App Platform builds from the repository |
+| Deploy mechanism | DigitalOcean App Platform with managed PostgreSQL; the trigger is decided in `specs/003` |
 | Environments and approvals | `docs/environments.md` |
 
 ## Rules
@@ -33,4 +33,4 @@ How changes are checked, built and deployed. Pipelines are code and follow the s
 | Pinned actions (6) | `scripts/check_harness.py` |
 | Workflow syntax | actionlint in `.github/workflows/quality.yml` |
 | Pipeline edits reviewed | CODEOWNERS, `ask` in `.claude/settings.json` |
-| Protected `main` and required check (1, 2) | Branch protection in the forge settings: TODO(adopt), set by a person |
+| Protected `main` and required check (1, 2) | Branch protection on `main` in the GitHub settings, set by Alberto |
