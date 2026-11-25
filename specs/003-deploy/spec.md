@@ -1,5 +1,5 @@
 ---
-status: draft
+status: approved
 owner: Alberto Sanmartín Martínez
 date: 2026-11-25
 links:
@@ -11,7 +11,7 @@ links:
 
 ## Summary
 
-A release workflow builds the tagged version once, runs its migrations against the production database, and deploys it to DigitalOcean App Platform (Frankfurt) with an App Platform dev database. The site answers on https://albertosanmartinmartinez.es, with `www` and plain HTTP redirected there. A read-only smoke check runs after every deploy. Rolling back redeploys the previous tag.
+A release workflow builds the tagged version once, runs its migrations against the production database, and deploys it to DigitalOcean App Platform (Frankfurt) with an App Platform dev database. The site answers on https://www.albertosanmartinmartinez.es; GoDaddy forwards the bare domain there and App Platform redirects plain HTTP. A read-only smoke check runs after every deploy. Rolling back redeploys the previous tag.
 
 ## Behavior
 
@@ -25,12 +25,12 @@ A release workflow builds the tagged version once, runs its migrations against t
 
 ## Acceptance criteria
 
-- AC-1: Given a release `vX.Y.Z` published by an allowed publisher, then that tag is built once and deployed, and https://albertosanmartinmartinez.es answers with header `x-app-version: vX.Y.Z`.
+- AC-1: Given a release `vX.Y.Z` published by an allowed publisher, then that tag is built once and deployed, and https://www.albertosanmartinmartinez.es answers with header `x-app-version: vX.Y.Z`.
 - AC-2: Given a release published by anyone else, then the workflow fails before building or deploying anything.
 - AC-3: Given a migration that fails, then the deploy stops and the previous version keeps serving.
 - AC-4: Given a new version that fails its health check, then App Platform keeps the previous version serving.
 - AC-5: Given the workflow run by hand with an earlier tag, then that tag's existing image is deployed without a new build.
-- AC-6: Given `http://`, `www.` or both, then the visitor is redirected to `https://albertosanmartinmartinez.es` with a valid certificate.
+- AC-6: Given `http://www.albertosanmartinmartinez.es` or `http://albertosanmartinmartinez.es`, then the visitor ends on `https://www.albertosanmartinmartinez.es` with a valid certificate. Whether `https://albertosanmartinmartinez.es` also redirects depends on GoDaddy's forwarding and is checked after setup.
 - AC-7: Given any response, then it carries `Strict-Transport-Security`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `X-Frame-Options: DENY` and a `Permissions-Policy` that turns off camera, microphone and geolocation.
 - AC-8: Given the repository, then it holds no secret values: the database URL, SMTP credentials and the DigitalOcean token live only in App Platform and GitHub secrets, and gitleaks finds nothing.
 - AC-9: Given a finished deploy, then the smoke check passes on `/es`, `/en`, `/en/privacy` and a 404, read-only, or the workflow fails and says so.
@@ -50,4 +50,5 @@ No new screens. The privacy pages name the hosting provider and region (AC-11).
 
 ## Open questions
 
-- [ ] Where the DNS of albertosanmartinmartinez.es is managed (needed to point the domain without touching the email records).
+- [x] DNS stays at GoDaddy; `www` is canonical and the bare domain is forwarded (Alberto, 2026-11-25).
+- [ ] Whether GoDaddy's forwarding serves `https://albertosanmartinmartinez.es` with a valid certificate; if not, document it as a known limit.

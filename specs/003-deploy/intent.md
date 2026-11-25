@@ -14,12 +14,12 @@ The site and the contact form only run on Alberto's machine. Nobody can visit th
 
 ## Users
 
-- Visitors, who reach the site at https://albertosanmartinmartinez.es.
+- Visitors, who reach the site at https://www.albertosanmartinmartinez.es.
 - Alberto, who publishes releases and must be able to roll back without help.
 
 ## Outcome
 
-Publishing a release `vX.Y.Z` puts exactly that version on https://albertosanmartinmartinez.es, served from DigitalOcean App Platform in Frankfurt with its database, after its migrations run. Going back is one action with the previous tag. Secrets never touch the repository.
+Publishing a release `vX.Y.Z` puts exactly that version on https://www.albertosanmartinmartinez.es, served from DigitalOcean App Platform in Frankfurt with its database, after its migrations run. Going back is one action with the previous tag. Secrets never touch the repository.
 
 ## Out of scope
 
@@ -29,4 +29,4 @@ Publishing a release `vX.Y.Z` puts exactly that version on https://albertosanmar
 
 ## Open questions
 
-- [ ] Where the DNS of albertosanmartinmartinez.es is managed, so the email records (MX, SPF, DKIM) stay untouched.
+- [x] DNS stays at GoDaddy, so the email records (Google Workspace MX, SPF) stay untouched. GoDaddy can't point the bare domain at App Platform, so `www` is the canonical address and GoDaddy forwards the bare domain to it (Alberto, 2026-11-25).
