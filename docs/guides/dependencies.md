@@ -10,7 +10,7 @@ How libraries, internal packages, tools and base images get in and stay current.
 | Workspace layout (internal libraries) | One package, no workspaces |
 | Import boundaries and their check | UI components never import `src/db/`; checked by ESLint `no-restricted-imports` in `eslint.config.mjs` |
 | License allowlist | MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, 0BSD |
-| Release-age quarantine | 3 days (`minimumReleaseAge` in `pnpm-workspace.yaml`) |
+| Release-age quarantine | 7 days (`minimumReleaseAge: 10080` in `pnpm-workspace.yaml`, `cooldown` in `.github/dependabot.yml`) |
 | Automated updates | Dependabot, `.github/dependabot.yml` |
 
 ## Rules

@@ -1,8 +1,12 @@
 {
   "name": "Alberto Sanmartín Martínez",
-  "headline": "Placeholder headline, replaced from the LinkedIn export",
-  "location": "Placeholder location",
-  "summary": ["Placeholder summary. The real text comes from the LinkedIn export."],
+  "headline": "Chief Technology Officer at Intemic",
+  "location": "Barbastro, Aragon, Spain",
+  "summary": [
+    "Restless and entrepreneurial.",
+    "I believe learning never ends: it is always a good time to learn and keep improving.",
+    "I aim for a triangle-shaped profile: a broad base of knowledge and deep specialization in one area."
+  ],
   "links": {
     "linkedin": "https://www.linkedin.com/in/albertosanmartinmartinez/",
     "github": "https://github.com/AlbertoSanmartinMartinez",

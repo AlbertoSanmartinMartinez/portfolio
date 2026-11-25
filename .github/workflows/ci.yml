@@ -38,7 +38,9 @@ jobs:
       - run: pnpm test:coverage
       - name: Diff coverage (80% of changed lines)
         if: github.event_name == 'pull_request'
-        run: pipx run diff-cover==11.0.1 coverage/cobertura-coverage.xml --compare-branch "origin/${{ github.base_ref }}" --fail-under 80
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: pipx run diff-cover==11.0.1 coverage/cobertura-coverage.xml --compare-branch "origin/$BASE_REF" --fail-under 80
 
   full:
     if: github.event_name == 'push' || github.event.pull_request.draft == false
@@ -69,5 +71,7 @@ jobs:
     needs: [checks, full]
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo '${{ toJSON(needs) }}' | python3 -c 'import json,sys; bad=[k for k,v in json.load(sys.stdin).items() if v["result"]!="success"]; print("not green:", bad) if bad else print("all green"); sys.exit(1 if bad else 0)'
+      - env:
+          NEEDS: ${{ toJSON(needs) }}
+        run: |
+          echo "$NEEDS" | python3 -c 'import json,sys; bad=[k for k,v in json.load(sys.stdin).items() if v["result"]!="success"]; print("not green:", bad) if bad else print("all green"); sys.exit(1 if bad else 0)'

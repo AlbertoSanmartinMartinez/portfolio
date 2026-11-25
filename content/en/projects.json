@@ -1,15 +1,11 @@
 [
   {
-    "id": "placeholder-project",
+    "id": "portfolio",
     "name": "Portfolio",
-    "description": "Placeholder project description",
+    "description": "This site: a bilingual portfolio built by coding agents following the Agentic SDLC harness template.",
     "stack": ["Next.js", "TypeScript"],
-    "links": { "repo": "https://github.com/AlbertoSanmartinMartinez/portfolio" }
-  },
-  {
-    "id": "placeholder-no-links",
-    "name": "Placeholder",
-    "description": "Placeholder project description",
-    "stack": ["Next.js"]
+    "links": {
+      "repo": "https://github.com/AlbertoSanmartinMartinez/portfolio"
+    }
   }
 ]
